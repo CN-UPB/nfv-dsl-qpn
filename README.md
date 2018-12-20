@@ -16,6 +16,9 @@ Details about the implementation can be found in the [wiki](https://github.com/C
 ## Contact
 
 Developers:
+
 * 
+
+Project coordinators: Anthony Anjorin, [Stefan Schneider](https://github.com/stefanbschneider)
 
 For questions, bugs, or suggestions, please use GitHub's issue system.
