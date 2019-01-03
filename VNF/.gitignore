@@ -1,0 +1,3 @@
+/gen/*
+/model/*.genmodel
+/model*.ecore

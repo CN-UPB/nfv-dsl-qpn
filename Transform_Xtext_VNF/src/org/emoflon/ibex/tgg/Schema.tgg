@@ -1,0 +1,68 @@
+#import "platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore"
+#import "platform:/resource/VNF/model/VNF.ecore"
+
+#schema Transform_Xtext_VNF
+	
+#source {
+	vnf
+}
+
+#target { 
+	VNF
+} 
+
+#correspondence {
+	ServiceToService{
+		#src-> vnf.Service
+		#trg-> VNF.Service
+	}
+	
+	SourceToSource {
+		#src->vnf.Source
+		#trg->VNF.Source
+	}
+		
+	VnfToVnf {
+		#src-> vnf.VNF
+		#trg-> VNF.VNF_component
+	}
+	
+	InPortToInPort {
+		#src-> vnf.InPort
+		#trg-> VNF.InPort
+	}
+		
+	OutPortToOutPort {
+		#src-> vnf.OutPort
+		#trg-> VNF.OutPort
+	}
+	
+	VLinkToVLink {
+		#src->vnf.VLink
+		#trg->VNF.Vlink
+	}
+	
+	
+}
+
+#attributeConditions {
+	
+	 #userDefined
+	 increase(param1: EInt) {
+	 	#sync: [B], [F]
+	 	#gen: [B], [F]
+	 }
+	 
+}
+
+
+
+
+
+
+
+
+
+
+
+

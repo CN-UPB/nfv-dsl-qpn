@@ -1,0 +1,10 @@
+import "platform:/resource/VNF/model/VNF.ecore"
+
+
+pattern synchronizedPattern {
+	port: InPort {
+		.ingoingLinks > 1
+		.isSynchronized == 'false'
+	}
+}
+condition noNotSynchronizedPorts = forbid synchronizedPattern

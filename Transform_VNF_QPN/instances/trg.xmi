@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="ASCII"?>
+<QPN:PetriNet xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:QPN="platform:/resource/QPN/model/QPN.ecore" name="test">
+  <groups name="user">
+    <forward>
+      <function>
+        <transitions xsi:type="QPN:TimedTransition"/>
+      </function>
+    </forward>
+    <backward>
+      <in name="up1">
+        <arcs to="//@groups.0/@backward/@function.0/@places.0" from="//@groups.0/@backward/@in.0/@transitions.0"/>
+        <transitions xsi:type="QPN:ImmediateTransition"/>
+      </in>
+      <function>
+        <places name="user" queue="FIFO"/>
+      </function>
+    </backward>
+  </groups>
+  <groups name="vnf2">
+    <forward>
+      <out name="v2o3">
+        <arcs to="//@groups.1/@forward/@out.0/@places.0" from="//@groups.1/@forward/@function.0/@transitions.0"/>
+        <places queue="FIFO"/>
+      </out>
+      <function>
+        <places queue="FIFO"/>
+        <transitions xsi:type="QPN:TimedTransition"/>
+      </function>
+    </forward>
+    <backward>
+      <function>
+        <places queue="FIFO"/>
+        <transitions xsi:type="QPN:TimedTransition"/>
+      </function>
+    </backward>
+  </groups>
+  <groups name="vnf3">
+    <forward>
+      <out name="v3o1">
+        <arcs to="//@groups.2/@forward/@out.0/@places.0" from="//@groups.2/@forward/@function.0/@transitions.0"/>
+        <places queue="FIFO"/>
+      </out>
+      <function>
+        <places queue="FIFO"/>
+        <transitions xsi:type="QPN:TimedTransition"/>
+      </function>
+    </forward>
+    <backward>
+      <function>
+        <places queue="FIFO"/>
+        <transitions xsi:type="QPN:TimedTransition"/>
+      </function>
+    </backward>
+  </groups>
+  <arcs to="//@groups.1/@backward/@function.0/@transitions.0" from="//@groups.1/@backward/@function.0/@places.0"/>
+  <arcs to="//@groups.1/@forward/@function.0/@transitions.0" from="//@groups.1/@forward/@function.0/@places.0"/>
+  <arcs to="//@groups.2/@backward/@function.0/@transitions.0" from="//@groups.2/@backward/@function.0/@places.0"/>
+  <arcs to="//@groups.2/@forward/@function.0/@transitions.0" from="//@groups.2/@forward/@function.0/@places.0"/>
+</QPN:PetriNet>

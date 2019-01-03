@@ -1,0 +1,15 @@
+import "platform:/resource/VNF/model/VNF.ecore"
+
+pattern oneVNF {
+	vnf: VNF_component
+}
+
+pattern twoPortsAtVnfConclusion {
+	inport: InPort
+	outport: OutPort
+	vnf: VNF_component {
+		-inport -> inport
+		-outport -> outport
+	}
+
+}

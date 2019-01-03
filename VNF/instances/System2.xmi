@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VNF_to_QPN:System
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:VNF_to_QPN="platform:/resource/VNF_to_QPN/model/VNF_to_QPN.ecore">
+  <components
+      name="cache">
+    <ports xsi:type="VNF_to_QPN:inPort"
+        name="inCache"/>
+    <ports xsi:type="VNF_to_QPN:outPort"
+        name="outCache"/>
+    <functions
+        name="cacheFunction"
+        inport="//@components.0/@functions.0/@ports.0"
+        outport="//@components.0/@functions.0/@ports.1">
+      <ports
+          xsi:type="VNF_to_QPN:inPort"
+          name="inCF1"/>
+      <ports
+          xsi:type="VNF_to_QPN:outPort"
+          name="outCF1"/>
+    </functions>
+    <functions
+        name="cacheFunction2"
+        inport="//@components.0/@functions.1/@ports.0"
+        outport="//@components.0/@functions.1/@ports.1">
+      <ports
+          xsi:type="VNF_to_QPN:inPort"
+          name="inCF2"/>
+      <ports
+          xsi:type="VNF_to_QPN:outPort"
+          name="outCF2"/>
+    </functions>
+  </components>
+  <components
+      inport="//@components.1/@ports.0"
+      outport="//@components.1/@ports.1">
+    <ports xsi:type="VNF_to_QPN:inPort"/>
+    <ports xsi:type="VNF_to_QPN:outPort"/>
+    <functions/>
+  </components>
+  <connectors
+      xsi:type="VNF_to_QPN:FunctionConnector"
+      funcTarget="//@components.0/@functions.0/@ports.0"
+      vnfSource="//@components.0/@ports.0"/>
+</VNF_to_QPN:System>

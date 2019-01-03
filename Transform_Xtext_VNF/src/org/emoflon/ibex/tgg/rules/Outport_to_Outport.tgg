@@ -1,0 +1,80 @@
+#using Transform_Xtext_VNF.*
+#using AttrCondDefLibrary.*
+
+#rule OutP2OutPFWD #with Transform_Xtext_VNF
+
+#source { 
+	vnf: vnf.VNF {
+		-fwdPorts->fwdPorts
+	}
+	fwdPorts: FWDPort {
+		++ -outPort->outPort
+	}
+	++ outPort: OutPort {
+		
+	}
+}
+
+#target {
+	trgVnf: VNF.VNF_component {
+		++ -outport->trgOutPortFWD
+	}
+	++ trgOutPortFWD: VNF.OutPortFWD {
+		
+	}
+}
+
+#correspondence {
+	vnf2vnf: VnfToVnf {
+		#src->vnf
+		#trg->trgVnf
+	}
+	++ outport2outport: OutPortToOutPort {
+		#src->outPort
+		#trg->trgOutPortFWD
+	}
+}
+
+#attributeConditions {
+	eq_string(outPort.name, trgOutPortFWD.name)
+	
+}
+
+#rule OutP2OutPBWD #with Transform_Xtext_VNF
+
+#source { 
+	vnf: vnf.VNF {
+		-bwdPorts->bwdPorts
+	}
+	bwdPorts: BWDPort {
+		++ -outPort->outPort
+	}
+	++ outPort: OutPort {
+		
+	}
+}
+
+#target {
+	trgVnf: VNF.VNF_component {
+		++ -outport->trgOutPortBWD
+	}
+	++ trgOutPortBWD: VNF.OutPortBWD {
+		
+	}
+}
+
+#correspondence {
+	vnf2vnf: VnfToVnf {
+		#src->vnf
+		#trg->trgVnf
+	}
+	++ outport2outport: OutPortToOutPort {
+		#src->outPort
+		#trg->trgOutPortBWD
+	}
+}
+
+#attributeConditions {
+	eq_string(outPort.name, trgOutPortBWD.name)
+	
+}

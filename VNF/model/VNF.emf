@@ -1,0 +1,65 @@
+@GenModel(documentation="TODO: Add documentation for Blup")
+@namespace(uri="platform:/resource/VNF/model/VNF.ecore", prefix="VNF")
+package VNF;
+
+class Service {
+	val VNF_component [2..*]components;
+	val Source [*]sources;
+	val Vlink [*]connectors;
+	attr EString name;
+	
+}
+
+class Source {
+	attr EString name;
+	attr EString generationPeriod;
+	ref InPort [0..*] inport;
+	ref OutPort [1..*] outport;
+}
+
+class VNF_component {
+	attr EString [1] processingTime; 
+	attr EString [1] name;
+	attr EString [1] resources; 
+	ref InPort [1..*] inport;
+	ref OutPort[1..*] outport;
+}
+
+abstract class Port {
+	attr EString name;
+}
+
+abstract class InPort extends Port {
+	attr EBoolean isSynchronized;
+	ref Vlink [*] source;
+	attr EInt ingoingLinks;
+}
+
+abstract class OutPort extends Port {	
+	ref Vlink [*] target;
+}
+
+class InPortFWD extends InPort {
+	
+}
+
+class OutPortFWD extends OutPort {
+	
+}
+
+class InPortBWD extends InPort {
+	
+}
+
+class OutPortBWD extends OutPort {
+	
+}
+
+class Vlink {
+	attr EString name;
+	attr EString probability;
+	attr EString dataManipulation;
+	ref InPort [1] target;
+	ref OutPort [1] source;
+}
+

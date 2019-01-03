@@ -1,0 +1,79 @@
+#using Transform_Xtext_VNF.*
+#using AttrCondDefLibrary.*
+
+#rule SourceInPorts #with Transform_Xtext_VNF
+
+#source { 
+	source: Source {
+		++ -inPort->inPort
+	}
+	
+	++ inPort: InPort {
+		
+	}
+}
+
+#target {
+	trgSource: VNF.Source {
+		++ -inport->trgInPort
+	}
+	
+	++ trgInPort: VNF.InPortBWD {
+		
+	}
+}
+
+#correspondence {
+	s2s: SourceToSource {
+		#src->source
+		#trg->trgSource
+	}
+	
+	++ inP2inP: InPortToInPort {
+		#src->inPort
+		#trg->trgInPort
+	}
+}
+
+#attributeConditions {
+	eq_string(inPort.name,trgInPort.name)
+	eq_boolean(inPort.isSync, trgInPort.isSynchronized)
+}
+
+#rule SourceOutPorts #with Transform_Xtext_VNF
+
+#source { 
+	source: Source {
+		++ -outPort->outPort
+	}
+	
+	++ outPort: OutPort {
+		
+	}
+}
+
+#target {
+	trgSource: VNF.Source {
+		++ -outport->trgOutPort
+	}
+	
+	++ trgOutPort: VNF.OutPortFWD {
+		
+	}
+}
+
+#correspondence {
+	s2s: SourceToSource {
+		#src->source
+		#trg->trgSource
+	}
+	
+	++ outP2outP: OutPortToOutPort {
+		#src->outPort
+		#trg->trgOutPort
+	}
+}
+
+#attributeConditions {
+	eq_string(outPort.name,trgOutPort.name)
+}

@@ -1,0 +1,29 @@
+#using Transform_Xtext_VNF.*
+#using AttrCondDefLibrary.*
+
+#rule Service_to_Service #with Transform_Xtext_VNF
+
+#source { 
+	++ service: vnf.Service {
+		
+	}
+	
+	
+}
+
+#target {
+	++ trgService: VNF.Service {
+		
+	}
+}
+
+#correspondence {
+	++ service2service: ServiceToService {
+		#src->service
+		#trg->trgService
+	}
+}
+
+#attributeConditions {
+	eq_string(service.serviceNname, trgService.name)
+}

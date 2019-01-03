@@ -1,0 +1,57 @@
+#using Transform_Xtext_VNF.*
+#using AttrCondDefLibrary.*
+
+#rule VNF_to_VNF #with Transform_Xtext_VNF
+
+#source { 
+	service: Service {
+		++ -components-> vnf
+	}
+	
+	++ vnf: vnf.VNF {
+		++ -fwdPorts->fwdPorts
+		++ -bwdPorts->bwdPorts
+	}
+	
+	++ fwdPorts: vnf.FWDPort {
+		
+	}
+	
+	++ bwdPorts: vnf.BWDPort {
+		
+	}
+
+	
+}
+
+#target {
+	trgService: VNF.Service {
+		++ -components-> trgVnf
+	}
+	
+	++ trgVnf: VNF.VNF_component {
+		
+	}
+	
+	
+	
+}
+
+#correspondence {
+	service2service: ServiceToService {
+		#src->service
+		#trg->trgService
+	}
+	
+	++ vnf2vnf: VnfToVnf {
+		#src->vnf
+		#trg->trgVnf
+	}
+}
+
+#attributeConditions {
+	eq_string(vnf.vnfName, trgVnf.name)
+	eq_string(vnf.resources, trgVnf.resources)
+	eq_string(vnf.processingTime, trgVnf.processingTime)
+	
+}

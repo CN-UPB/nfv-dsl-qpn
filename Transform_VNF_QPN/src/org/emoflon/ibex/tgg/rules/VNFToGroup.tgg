@@ -1,0 +1,101 @@
+#using Transform_VNF_QPN.*
+#using AttrCondDefLibrary.*
+
+#rule VNFToGroup #with Transform_VNF_QPN
+
+#source { 
+	service: Service {
+		++ -components-> vnf
+	}
+	
+	++vnf: VNF_component {
+		
+	}
+}
+
+#target {
+	
+	petriNet: PetriNet {
+		++ -groups-> group
+		++-arcs->arcBWD
+		++-arcs->arcFWD
+	}
+	
+	++group: Group {
+		++-backward->subGroupBWD
+		++-forward->subGroupFWD
+		
+	}
+	
+	++subGroupBWD :SubGroup {
+		++-function-> functionBWD
+	}
+	
+	
+	++subGroupFWD: SubGroup {
+		++-function->functionFWD
+		
+	}
+	
+	++functionBWD : SubSubGroup {
+		++-arcs->arcBWD
+		++-places->placeBWD
+		++-transitions->transitionBWD
+	}
+	++placeBWD :Place {
+		
+		}
+	
+	++transitionBWD: TimedTransition {
+		
+		
+	}
+	
+	++ arcBWD:Arc {
+		++-from->placeBWD
+		++-to->transitionBWD
+	}
+	
+	++functionFWD : SubSubGroup {
+		++-arcs->arcFWD
+		++-places->placeFWD
+		++-transitions->transitionFWD
+	}
+	++placeFWD :Place {
+		
+		}
+	
+	++transitionFWD: TimedTransition {
+		
+		
+	}
+	
+	++ arcFWD:Arc {
+		++-from->placeFWD
+		++-to->transitionFWD
+	}
+	
+}
+
+#correspondence {
+	
+	serviceToPetriNet:ServiceToPetriNet {
+		#src-> service
+		#trg-> petriNet
+	}
+	
+	++ vnfToGroup:VNFToGroup {
+		#src->vnf
+		#trg->group
+	}
+	
+}
+
+#attributeConditions {
+	eq_string(vnf.name, group.name)	
+	eq_string(transitionBWD.timeFunction, vnf.processingTime)
+	eq_string(transitionFWD.timeFunction, vnf.processingTime)
+	
+	eq_string(placeBWD.queue,"FIFO")
+	eq_string(placeFWD.queue,"FIFO")
+}

@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: VNF_to_QPN_Rules
+Bundle-SymbolicName: VNF_to_QPN_Rules; singleton:=true
+Export-Package: VNF_to_QPN_Rules,
+ VNF_to_QPN_Rules.api,
+ VNF_to_QPN_Rules.api.matches,
+ VNF_to_QPN_Rules.api.rules
+Bundle-Name: VNF_to_QPN_Rules
+Bundle-Version: 1.0.0.qualifier
+Require-Bundle: org.emoflon.ibex.common,
+ org.emoflon.ibex.gt,
+ VNF;bundle-version="0.0.1",
+ org.emoflon.ibex.gt.democles
+Bundle-ManifestVersion: 2
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Vendor: My Company
+Import-Package: org.apache.commons.logging,
+ org.apache.log4j,
+ org.eclipse.core.runtime;version="3.5.0",
+ org.osgi.framework;version="1.9.0"

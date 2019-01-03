@@ -1,0 +1,419 @@
+#using Transform_VNF_QPN.*
+#using AttrCondDefLibrary.*
+
+#rule FWDVLinksToArcs #with Transform_VNF_QPN
+
+#source { 
+	service:Service{
+		++-connectors->vLinkFWD
+	}
+	
+	++vLinkFWD:Vlink {
+		++-source-> srcFWD
+		++-target-> trgFWD
+	}
+	
+	srcFWD :OutPortFWD {
+		
+	}
+	
+	trgFWD: InPortFWD {
+		
+	}
+	
+}
+
+#target {
+	
+	petriNet:PetriNet{
+		++-arcs->arcFWD
+		++-arcs->helpArcFWD
+		++-arcs->arcToInPortFWD
+		++-flyingPlaces->placeToInportFWD
+	}
+	
+	outPortFWDGroup : SubSubGroup {
+		-places->placeFWD
+	}
+		
+	placeFWD :Place {
+		
+	} 
+	
+	InPortFWDGroup :SubSubGroup {
+		-transitions->InPortFWDImmediateTransition
+		
+	}
+	
+	InPortFWDImmediateTransition: ImmediateTransition {
+		
+	}
+	
+	++helpArcFWD :Arc {
+		++-from->placeFWD
+		++-to->transitionFWD
+	}
+	
+	++transitionFWD : ImmediateTransition {
+		
+	}
+	
+	++arcFWD: Arc {
+		++-from->transitionFWD
+		++-to-> placeToInportFWD
+	}
+	
+	++placeToInportFWD : Place {
+		
+	}
+	
+	++arcToInPortFWD : Arc {
+		++-from->placeToInportFWD
+		++-to->InPortFWDImmediateTransition
+	}
+	
+}
+
+#correspondence {
+	serviceToPetriNet :ServiceToPetriNet {
+		#src->service
+		#trg->petriNet
+	}
+	
+	outPortToSubSubGroupFWD :OutPortToSubSubGroup {
+		#src->srcFWD
+		#trg->outPortFWDGroup
+	}
+	
+	inPortToSubSubGroupFWD:InPortToSubSubGroup {
+		#src->trgFWD
+		#trg->InPortFWDGroup
+	}
+	
+	++vLinkToArcFWD :VLinkToArc {
+		#src->vLinkFWD
+		#trg->arcFWD
+	}
+	
+}
+
+#attributeConditions {
+	eq_string(transitionFWD.weight,vLinkFWD.probability)
+	eq_string(arcFWD.text,vLinkFWD.dataManipulation)
+	
+	eq_string(placeToInportFWD.queue, "FIFO")
+	
+}
+
+
+#rule BWDVLinksToArcs #with Transform_VNF_QPN
+
+#source { 
+	service:Service{
+		++-connectors->vLinkBWD
+	}
+	
+	++vLinkBWD:Vlink {
+		++-source-> srcBWD
+		++-target-> trgBWD
+	}
+	
+	srcBWD :OutPortBWD {
+		
+	}
+	
+	trgBWD: InPortBWD {
+		
+	}
+	
+}
+
+#target {
+	
+	petriNet:PetriNet{
+		++-arcs->arcBWD
+		++-arcs->helpArcBWD
+		++-arcs->arcToInPortBWD
+		++-flyingPlaces->placeToInportBWD
+	}
+	
+	outPortBWDGroup : SubSubGroup {
+		-places->placeBWD
+	}
+		
+	placeBWD :Place {
+		
+	} 
+	
+	InPortBWDGroup :SubSubGroup {
+		-transitions->InPortBWDImmediateTransition
+		
+	}
+	
+	InPortBWDImmediateTransition: ImmediateTransition {
+		
+	}
+	
+	++helpArcBWD :Arc {
+		++-from->placeBWD
+		++-to->transitionBWD
+	}
+	
+	++transitionBWD : ImmediateTransition {
+		
+	}
+	
+	++arcBWD: Arc {
+		++-from->transitionBWD
+		++-to-> placeToInportBWD
+	}
+	
+	++placeToInportBWD : Place {
+		
+	}
+	
+	++arcToInPortBWD : Arc {
+		++-from->placeToInportBWD
+		++-to->InPortBWDImmediateTransition
+	}
+	
+}
+
+#correspondence {
+	serviceToPetriNet :ServiceToPetriNet {
+		#src->service
+		#trg->petriNet
+	}
+	
+	outPortToSubSubGroupBWD :OutPortToSubSubGroup {
+		#src->srcBWD
+		#trg->outPortBWDGroup
+	}
+	
+	inPortToSubSubGroupBWD:InPortToSubSubGroup {
+		#src->trgBWD
+		#trg->InPortBWDGroup
+	}
+	
+	++vLinkToArcBWD :VLinkToArc {
+		#src->vLinkBWD
+		#trg->arcBWD
+	}
+	
+}
+
+#attributeConditions {
+	eq_string(transitionBWD.weight,vLinkBWD.probability)
+	eq_string(arcBWD.text,vLinkBWD.dataManipulation)
+	
+	eq_string(placeToInportBWD.queue, "FIFO")
+}
+
+
+#rule FWDToBWDVLinksToArcs #with Transform_VNF_QPN
+
+#source { 
+	service:Service{
+		++-connectors->vLinkFWDToBWD
+	}
+	
+	++vLinkFWDToBWD:Vlink {
+		++-source-> srcFWD
+		++-target-> trgBWD
+	}
+	
+	srcFWD :OutPortFWD {
+		
+	}
+	
+	trgBWD: InPortBWD {
+		
+	}
+	
+}
+
+#target {
+	
+	petriNet:PetriNet{
+		++-arcs->arcFWDToBWD
+		++-arcs->helpArcFWDToBWD
+		++-arcs->arcToInPortFWDToBWD
+		++-flyingPlaces->placeToInportFWDToBWD
+	}
+	
+	outPortFWDGroup : SubSubGroup {
+		-places->placeFWDToBWD
+	}
+		
+	placeFWDToBWD :Place {
+		
+	} 
+	
+	InPortBWDGroup :SubSubGroup {
+		-transitions->InPortBWDImmediateTransition
+		
+	}
+	
+	InPortBWDImmediateTransition: ImmediateTransition {
+		
+	}
+	
+	++helpArcFWDToBWD :Arc {
+		++-from->placeFWDToBWD
+		++-to->transitionFWDToBWD
+	}
+	
+	++transitionFWDToBWD : ImmediateTransition {
+		
+	}
+	
+	++arcFWDToBWD: Arc {
+		++-from->transitionFWDToBWD
+		++-to-> placeToInportFWDToBWD
+	}
+	
+	++placeToInportFWDToBWD : Place {
+		
+	}
+	
+	++arcToInPortFWDToBWD : Arc {
+		++-from->placeToInportFWDToBWD
+		++-to->InPortBWDImmediateTransition
+	}
+	
+}
+
+#correspondence {
+	serviceToPetriNet :ServiceToPetriNet {
+		#src->service
+		#trg->petriNet
+	}
+	
+	outPortToSubSubGroupFWD :OutPortToSubSubGroup {
+		#src->srcFWD
+		#trg->outPortFWDGroup
+	}
+	
+	inPortToSubSubGroupBWD:InPortToSubSubGroup {
+		#src->trgBWD
+		#trg->InPortBWDGroup
+	}
+	
+	++vLinkToArcBWD :VLinkToArc {
+		#src->vLinkFWDToBWD
+		#trg->arcFWDToBWD
+	}
+	
+}
+
+#attributeConditions {
+	eq_string(transitionFWDToBWD.weight,vLinkFWDToBWD.probability)
+	eq_string(arcFWDToBWD.text,vLinkFWDToBWD.dataManipulation)
+	
+	eq_string(placeToInportFWDToBWD.queue, "FIFO")
+}
+
+
+#rule BWDToFWDVLinksToArcs #with Transform_VNF_QPN
+
+#source { 
+	service:Service{
+		++-connectors->vLinkBWDToFWD
+	}
+	
+	++vLinkBWDToFWD:Vlink {
+		++-source-> srcBWD
+		++-target-> trgFWD
+	}
+	
+	srcBWD :OutPortBWD {
+		
+	}
+	
+	trgFWD: InPortFWD {
+		
+	}
+	
+}
+
+#target {
+	
+	petriNet:PetriNet{
+		++-arcs->arcBWDToFWD
+		++-arcs->helpArcBWDToFWD
+		++-arcs->arcToInPortBWDToFWD
+		++-flyingPlaces->placeToInportBWDToFWD
+	}
+	
+	outPortBWDGroup : SubSubGroup {
+		-places->placeBWDToFWD
+	}
+		
+	placeBWDToFWD :Place {
+		
+	} 
+	
+	InPortFWDGroup :SubSubGroup {
+		-transitions->InPortFWDImmediateTransition
+		
+	}
+	
+	InPortFWDImmediateTransition: ImmediateTransition {
+		
+	}
+	
+	++helpArcBWDToFWD :Arc {
+		++-from->placeBWDToFWD
+		++-to->transitionBWDToFWD
+	}
+	
+	++transitionBWDToFWD : ImmediateTransition {
+		
+	}
+	
+	++arcBWDToFWD: Arc {
+		++-from->transitionBWDToFWD
+		++-to-> placeToInportBWDToFWD
+	}
+	
+	++placeToInportBWDToFWD : Place {
+		
+	}
+	
+	++arcToInPortBWDToFWD : Arc {
+		++-from->placeToInportBWDToFWD
+		++-to->InPortFWDImmediateTransition
+	}
+	
+}
+
+#correspondence {
+	serviceToPetriNet :ServiceToPetriNet {
+		#src->service
+		#trg->petriNet
+	}
+	
+	outPortToSubSubGroupBWD :OutPortToSubSubGroup {
+		#src->srcBWD
+		#trg->outPortBWDGroup
+	}
+	
+	inPortToSubSubGroupFWD:InPortToSubSubGroup {
+		#src->trgFWD
+		#trg->InPortFWDGroup
+	}
+	
+	++vLinkToArcBWD :VLinkToArc {
+		#src->vLinkBWDToFWD
+		#trg->arcBWDToFWD
+	}
+	
+}
+
+#attributeConditions {
+	eq_string(transitionBWDToFWD.weight,vLinkBWDToFWD.probability)
+	eq_string(arcBWDToFWD.text,vLinkBWDToFWD.dataManipulation)
+	
+	eq_string(placeToInportBWDToFWD.queue, "FIFO")
+}
+

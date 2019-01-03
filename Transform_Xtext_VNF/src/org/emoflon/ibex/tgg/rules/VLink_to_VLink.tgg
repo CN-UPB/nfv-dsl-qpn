@@ -1,0 +1,75 @@
+#using Transform_Xtext_VNF.*
+#using AttrCondDefLibrary.*
+
+#rule VLink_to_VLink #with Transform_Xtext_VNF
+
+
+#source { 
+	service: Service {
+		++ -connectors-> VLink
+	} 
+	 
+	inPort: vnf.InPort {
+		
+	}
+	outPort: vnf.OutPort {
+		
+	}
+	
+	
+	++ VLink: vnf.VLink {
+		++ -source->outPort
+		++ -target->inPort
+	}
+}
+
+#target {
+	trgService: Service {
+		++ -connectors-> trgVLink
+	} 
+	 
+	trgInPort: VNF.InPort {
+		++ -source-> trgVLink
+	}
+	trgOutPort: VNF.OutPort {
+		++ -target->trgVLink
+	}
+	
+	++ trgVLink: VNF.Vlink {
+		++ -source->trgOutPort
+		++ -target->trgInPort
+	}
+	
+	
+}
+
+#correspondence {
+	service2service: ServiceToService {
+		#src->service
+		#trg->trgService
+	}
+	
+	inPort2inPort: InPortToInPort {
+		#src->inPort
+		#trg->trgInPort
+	}
+	
+	outPort2outPort: OutPortToOutPort {
+		#src->outPort
+		#trg->trgOutPort
+	}
+
+	++ vlink2vlink: VLinkToVLink {
+		#src->VLink
+		#trg->trgVLink
+	}
+}
+
+#attributeConditions {
+	eq_string(VLink.vLinkName, trgVLink.name)
+	eq_string(VLink.probability, trgVLink.probability)
+	eq_string(VLink.data_manipulation, trgVLink.dataManipulation)
+	increase(trgInPort.ingoingLinks)
+	
+}
+

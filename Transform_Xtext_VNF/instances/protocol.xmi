@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Transform_Xtext_VNF="platform:/resource/Transform_Xtext_VNF/model/Transform_Xtext_VNF.ecore">
+  <Transform_Xtext_VNF:Service_to_Service__Marker final="true">
+    <CREATE__SRC__service href="src.xmi#/"/>
+    <CREATE__TRG__trgService href="trg.xmi#/0"/>
+    <CREATE__CORR__service2service href="corr.xmi#/0"/>
+  </Transform_Xtext_VNF:Service_to_Service__Marker>
+  <Transform_Xtext_VNF:VNF_to_VNF__Marker final="true">
+    <CREATE__SRC__ports href="src.xmi#//@components.1/@ports"/>
+    <CONTEXT__SRC__service href="src.xmi#/"/>
+    <CREATE__SRC__vnf href="src.xmi#//@components.1"/>
+    <CONTEXT__TRG__trgService href="trg.xmi#/0"/>
+    <CREATE__TRG__trgVnf href="trg.xmi#/0/@components.0"/>
+    <CONTEXT__CORR__service2service href="corr.xmi#/0"/>
+    <CREATE__CORR__vnf2vnf href="corr.xmi#/1"/>
+  </Transform_Xtext_VNF:VNF_to_VNF__Marker>
+  <Transform_Xtext_VNF:Inport_to_Inport__Marker final="true">
+    <CREATE__SRC__inPort href="src.xmi#//@components.1/@ports/@inPort.0"/>
+    <CONTEXT__SRC__ports href="src.xmi#//@components.1/@ports"/>
+    <CONTEXT__SRC__vnf href="src.xmi#//@components.1"/>
+    <CREATE__TRG__trgInPort href="trg.xmi#/1"/>
+    <CONTEXT__TRG__trgVnf href="trg.xmi#/0/@components.0"/>
+    <CREATE__CORR__inport2inport href="corr.xmi#/2"/>
+    <CONTEXT__CORR__vnf2vnf href="corr.xmi#/1"/>
+  </Transform_Xtext_VNF:Inport_to_Inport__Marker>
+  <Transform_Xtext_VNF:VNF_to_VNF__Marker final="true">
+    <CREATE__SRC__ports href="src.xmi#//@components.0/@ports"/>
+    <CONTEXT__SRC__service href="src.xmi#/"/>
+    <CREATE__SRC__vnf href="src.xmi#//@components.0"/>
+    <CONTEXT__TRG__trgService href="trg.xmi#/0"/>
+    <CREATE__TRG__trgVnf href="trg.xmi#/0/@components.1"/>
+    <CONTEXT__CORR__service2service href="corr.xmi#/0"/>
+    <CREATE__CORR__vnf2vnf href="corr.xmi#/3"/>
+  </Transform_Xtext_VNF:VNF_to_VNF__Marker>
+  <Transform_Xtext_VNF:Inport_to_Inport__Marker final="true">
+    <CREATE__SRC__inPort href="src.xmi#//@components.0/@ports/@inPort.0"/>
+    <CONTEXT__SRC__ports href="src.xmi#//@components.0/@ports"/>
+    <CONTEXT__SRC__vnf href="src.xmi#//@components.0"/>
+    <CREATE__TRG__trgInPort href="trg.xmi#/2"/>
+    <CONTEXT__TRG__trgVnf href="trg.xmi#/0/@components.1"/>
+    <CREATE__CORR__inport2inport href="corr.xmi#/4"/>
+    <CONTEXT__CORR__vnf2vnf href="corr.xmi#/3"/>
+  </Transform_Xtext_VNF:Inport_to_Inport__Marker>
+  <Transform_Xtext_VNF:Outport_to_Outport__Marker final="true">
+    <CREATE__SRC__outPort href="src.xmi#//@components.1/@ports/@outPort.0"/>
+    <CONTEXT__SRC__ports href="src.xmi#//@components.1/@ports"/>
+    <CONTEXT__SRC__vnf href="src.xmi#//@components.1"/>
+    <CREATE__TRG__trgOutPort href="trg.xmi#/3"/>
+    <CONTEXT__TRG__trgVnf href="trg.xmi#/0/@components.0"/>
+    <CREATE__CORR__outport2outport href="corr.xmi#/5"/>
+    <CONTEXT__CORR__vnf2vnf href="corr.xmi#/1"/>
+  </Transform_Xtext_VNF:Outport_to_Outport__Marker>
+  <Transform_Xtext_VNF:Outport_to_Outport__Marker final="true">
+    <CREATE__SRC__outPort href="src.xmi#//@components.0/@ports/@outPort.0"/>
+    <CONTEXT__SRC__ports href="src.xmi#//@components.0/@ports"/>
+    <CONTEXT__SRC__vnf href="src.xmi#//@components.0"/>
+    <CREATE__TRG__trgOutPort href="trg.xmi#/4"/>
+    <CONTEXT__TRG__trgVnf href="trg.xmi#/0/@components.1"/>
+    <CREATE__CORR__outport2outport href="corr.xmi#/6"/>
+    <CONTEXT__CORR__vnf2vnf href="corr.xmi#/3"/>
+  </Transform_Xtext_VNF:Outport_to_Outport__Marker>
+  <Transform_Xtext_VNF:VLink_to_VLink__Marker final="true">
+    <CREATE__SRC__VLink href="src.xmi#//@connectors.0"/>
+    <CONTEXT__SRC__inPort href="src.xmi#//@components.1/@ports/@inPort.0"/>
+    <CONTEXT__SRC__outPort href="src.xmi#//@components.0/@ports/@outPort.0"/>
+    <CONTEXT__SRC__service href="src.xmi#/"/>
+    <CONTEXT__TRG__trgInPort href="trg.xmi#/1"/>
+    <CONTEXT__TRG__trgOutPort href="trg.xmi#/4"/>
+    <CONTEXT__TRG__trgService href="trg.xmi#/0"/>
+    <CREATE__TRG__trgVLink href="trg.xmi#/0/@connectors.0"/>
+    <CONTEXT__CORR__inPort2inPort href="corr.xmi#/2"/>
+    <CONTEXT__CORR__outPort2outPort href="corr.xmi#/6"/>
+    <CONTEXT__CORR__service2service href="corr.xmi#/0"/>
+    <CREATE__CORR__vlink2vlink href="corr.xmi#/7"/>
+  </Transform_Xtext_VNF:VLink_to_VLink__Marker>
+  <Transform_Xtext_VNF:VLink_to_VLink__Marker final="true">
+    <CREATE__SRC__VLink href="src.xmi#//@connectors.1"/>
+    <CONTEXT__SRC__inPort href="src.xmi#//@components.0/@ports/@inPort.0"/>
+    <CONTEXT__SRC__outPort href="src.xmi#//@components.1/@ports/@outPort.0"/>
+    <CONTEXT__SRC__service href="src.xmi#/"/>
+    <CONTEXT__TRG__trgInPort href="trg.xmi#/2"/>
+    <CONTEXT__TRG__trgOutPort href="trg.xmi#/3"/>
+    <CONTEXT__TRG__trgService href="trg.xmi#/0"/>
+    <CREATE__TRG__trgVLink href="trg.xmi#/0/@connectors.1"/>
+    <CONTEXT__CORR__inPort2inPort href="corr.xmi#/4"/>
+    <CONTEXT__CORR__outPort2outPort href="corr.xmi#/5"/>
+    <CONTEXT__CORR__service2service href="corr.xmi#/0"/>
+    <CREATE__CORR__vlink2vlink href="corr.xmi#/8"/>
+  </Transform_Xtext_VNF:VLink_to_VLink__Marker>
+</xmi:XMI>

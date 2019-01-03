@@ -1,0 +1,1660 @@
+<?xml version="1.0" encoding="ASCII"?>
+<tgg:TripleGraphGrammarFile xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tgg="http://www.moflon.org/ide/tgg/mosl/TGG">
+  <imports name="platform:/resource/VNF/model/VNF.ecore"/>
+  <imports name="platform:/resource/QPN/model/QPN.ecore"/>
+  <schema name="Transform_VNF_QPN">
+    <sourceTypes href="platform:/resource/VNF/model/VNF.ecore#/"/>
+    <targetTypes href="platform:/resource/QPN/model/QPN.ecore#/"/>
+    <correspondenceTypes name="ServiceToPetriNet">
+      <source href="platform:/resource/VNF/model/VNF.ecore#//Service"/>
+      <target href="platform:/resource/QPN/model/QPN.ecore#//PetriNet"/>
+    </correspondenceTypes>
+    <correspondenceTypes name="VLinkToArc">
+      <source href="platform:/resource/VNF/model/VNF.ecore#//Vlink"/>
+      <target href="platform:/resource/QPN/model/QPN.ecore#//Arc"/>
+    </correspondenceTypes>
+    <correspondenceTypes name="VNFToGroup">
+      <source href="platform:/resource/VNF/model/VNF.ecore#//VNF_component"/>
+      <target href="platform:/resource/QPN/model/QPN.ecore#//Group"/>
+    </correspondenceTypes>
+    <correspondenceTypes name="SourceToGroup">
+      <source href="platform:/resource/VNF/model/VNF.ecore#//Source"/>
+      <target href="platform:/resource/QPN/model/QPN.ecore#//Group"/>
+    </correspondenceTypes>
+    <correspondenceTypes name="InPortToSubSubGroup">
+      <source href="platform:/resource/VNF/model/VNF.ecore#//InPort"/>
+      <target href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+    </correspondenceTypes>
+    <correspondenceTypes name="OutPortToSubSubGroup">
+      <source href="platform:/resource/VNF/model/VNF.ecore#//OutPort"/>
+      <target href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+    </correspondenceTypes>
+    <attributeCondDefs name="eq_string">
+      <params paramName="a">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </params>
+      <params paramName="b">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </params>
+      <allowedSyncAdornments>
+        <value>B</value>
+        <value>B</value>
+      </allowedSyncAdornments>
+      <allowedSyncAdornments>
+        <value>B</value>
+        <value>F</value>
+      </allowedSyncAdornments>
+      <allowedSyncAdornments>
+        <value>F</value>
+        <value>B</value>
+      </allowedSyncAdornments>
+      <allowedGenAdornments>
+        <value>B</value>
+        <value>B</value>
+      </allowedGenAdornments>
+      <allowedGenAdornments>
+        <value>B</value>
+        <value>F</value>
+      </allowedGenAdornments>
+      <allowedGenAdornments>
+        <value>F</value>
+        <value>B</value>
+      </allowedGenAdornments>
+      <allowedGenAdornments>
+        <value>F</value>
+        <value>F</value>
+      </allowedGenAdornments>
+    </attributeCondDefs>
+  </schema>
+  <rules name="FWDInPortToSubSubGroupSource" schema="//@schema">
+    <sourcePatterns name="service">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Service"/>
+      <linkVariablePatterns target="//@rules.0/@sourcePatterns.1">
+        <type href="platform:/resource/VNF/model/VNF.ecore#//Service/sources"/>
+      </linkVariablePatterns>
+    </sourcePatterns>
+    <sourcePatterns name="source">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Source"/>
+      <linkVariablePatterns target="//@rules.0/@sourcePatterns.2">
+        <op value="++"/>
+        <type href="platform:/resource/VNF/model/VNF.ecore#//Source/inport"/>
+      </linkVariablePatterns>
+    </sourcePatterns>
+    <sourcePatterns name="inPortFWD">
+      <op value="++"/>
+      <type href="platform:/resource/VNF/model/VNF.ecore#//InPortFWD"/>
+    </sourcePatterns>
+    <targetPatterns name="petriNet">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet"/>
+      <linkVariablePatterns target="//@rules.0/@targetPatterns.1">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/groups"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="group">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Group"/>
+      <linkVariablePatterns target="//@rules.0/@targetPatterns.2">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Group/forward"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="subGroupFWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup"/>
+      <linkVariablePatterns target="//@rules.0/@targetPatterns.3">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup/function"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.0/@targetPatterns.5">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup/in"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="functionFWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.0/@targetPatterns.4">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/places"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="placeFWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Place"/>
+    </targetPatterns>
+    <targetPatterns name="InPortFWDGroup">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.0/@targetPatterns.7">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/arcs"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.0/@targetPatterns.6">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/transitions"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="transitionFWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//ImmediateTransition"/>
+    </targetPatterns>
+    <targetPatterns name="arcFWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Arc"/>
+      <linkVariablePatterns target="//@rules.0/@targetPatterns.6">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/from"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.0/@targetPatterns.4">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/to"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <correspondencePatterns name="serviceToPetriNet" type="//@schema/@correspondenceTypes.0" source="//@rules.0/@sourcePatterns.0" target="//@rules.0/@targetPatterns.0"/>
+    <correspondencePatterns name="vnfToGroup" type="//@schema/@correspondenceTypes.3" source="//@rules.0/@sourcePatterns.1" target="//@rules.0/@targetPatterns.1"/>
+    <correspondencePatterns name="inPortToSubSubGroup" type="//@schema/@correspondenceTypes.4" source="//@rules.0/@sourcePatterns.2" target="//@rules.0/@targetPatterns.5">
+      <op value="++"/>
+    </correspondencePatterns>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.0/@sourcePatterns.2">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Port/name"/>
+      </values>
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.0/@targetPatterns.5">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/name"/>
+      </values>
+    </attrConditions>
+  </rules>
+  <rules name="BWDInPortToSubSubGroupSource" schema="//@schema">
+    <sourcePatterns name="service">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Service"/>
+      <linkVariablePatterns target="//@rules.1/@sourcePatterns.1">
+        <type href="platform:/resource/VNF/model/VNF.ecore#//Service/sources"/>
+      </linkVariablePatterns>
+    </sourcePatterns>
+    <sourcePatterns name="source">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Source"/>
+      <linkVariablePatterns target="//@rules.1/@sourcePatterns.2">
+        <op value="++"/>
+        <type href="platform:/resource/VNF/model/VNF.ecore#//Source/inport"/>
+      </linkVariablePatterns>
+    </sourcePatterns>
+    <sourcePatterns name="inPortBWD">
+      <op value="++"/>
+      <type href="platform:/resource/VNF/model/VNF.ecore#//InPortBWD"/>
+    </sourcePatterns>
+    <targetPatterns name="petriNet">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet"/>
+      <linkVariablePatterns target="//@rules.1/@targetPatterns.1">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/groups"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="group">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Group"/>
+      <linkVariablePatterns target="//@rules.1/@targetPatterns.2">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Group/backward"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="subGroupBWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup"/>
+      <linkVariablePatterns target="//@rules.1/@targetPatterns.3">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup/function"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.1/@targetPatterns.5">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup/in"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="functionBWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.1/@targetPatterns.4">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/places"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="placeBWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Place"/>
+    </targetPatterns>
+    <targetPatterns name="InPortBWDGroup">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.1/@targetPatterns.7">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/arcs"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.1/@targetPatterns.6">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/transitions"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="transitionBWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//ImmediateTransition"/>
+    </targetPatterns>
+    <targetPatterns name="arcBWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Arc"/>
+      <linkVariablePatterns target="//@rules.1/@targetPatterns.6">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/from"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.1/@targetPatterns.4">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/to"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <correspondencePatterns name="serviceToPetriNet" type="//@schema/@correspondenceTypes.0" source="//@rules.1/@sourcePatterns.0" target="//@rules.1/@targetPatterns.0"/>
+    <correspondencePatterns name="vnfToGroup" type="//@schema/@correspondenceTypes.3" source="//@rules.1/@sourcePatterns.1" target="//@rules.1/@targetPatterns.1"/>
+    <correspondencePatterns name="inPortToSubSubGroup" type="//@schema/@correspondenceTypes.4" source="//@rules.1/@sourcePatterns.2" target="//@rules.1/@targetPatterns.5">
+      <op value="++"/>
+    </correspondencePatterns>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.1/@sourcePatterns.2">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Port/name"/>
+      </values>
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.1/@targetPatterns.5">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/name"/>
+      </values>
+    </attrConditions>
+  </rules>
+  <rules name="FWDInPortToSubSubGroupVNF" schema="//@schema">
+    <sourcePatterns name="service">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Service"/>
+      <linkVariablePatterns target="//@rules.2/@sourcePatterns.1">
+        <type href="platform:/resource/VNF/model/VNF.ecore#//Service/components"/>
+      </linkVariablePatterns>
+    </sourcePatterns>
+    <sourcePatterns name="vnf">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//VNF_component"/>
+      <linkVariablePatterns target="//@rules.2/@sourcePatterns.2">
+        <op value="++"/>
+        <type href="platform:/resource/VNF/model/VNF.ecore#//VNF_component/inport"/>
+      </linkVariablePatterns>
+    </sourcePatterns>
+    <sourcePatterns name="inPortFWD">
+      <op value="++"/>
+      <type href="platform:/resource/VNF/model/VNF.ecore#//InPortFWD"/>
+    </sourcePatterns>
+    <targetPatterns name="petriNet">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet"/>
+      <linkVariablePatterns target="//@rules.2/@targetPatterns.1">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/groups"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="group">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Group"/>
+      <linkVariablePatterns target="//@rules.2/@targetPatterns.2">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Group/forward"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="subGroupFWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup"/>
+      <linkVariablePatterns target="//@rules.2/@targetPatterns.3">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup/function"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.2/@targetPatterns.5">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup/in"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="functionFWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.2/@targetPatterns.4">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/places"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="placeFWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Place"/>
+    </targetPatterns>
+    <targetPatterns name="InPortFWDGroup">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.2/@targetPatterns.7">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/arcs"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.2/@targetPatterns.6">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/transitions"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="transitionFWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//ImmediateTransition"/>
+    </targetPatterns>
+    <targetPatterns name="arcFWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Arc"/>
+      <linkVariablePatterns target="//@rules.2/@targetPatterns.6">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/from"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.2/@targetPatterns.4">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/to"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <correspondencePatterns name="serviceToPetriNet" type="//@schema/@correspondenceTypes.0" source="//@rules.2/@sourcePatterns.0" target="//@rules.2/@targetPatterns.0"/>
+    <correspondencePatterns name="vnfToGroup" type="//@schema/@correspondenceTypes.2" source="//@rules.2/@sourcePatterns.1" target="//@rules.2/@targetPatterns.1"/>
+    <correspondencePatterns name="inPortToSubSubGroup" type="//@schema/@correspondenceTypes.4" source="//@rules.2/@sourcePatterns.2" target="//@rules.2/@targetPatterns.5">
+      <op value="++"/>
+    </correspondencePatterns>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.2/@sourcePatterns.2">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Port/name"/>
+      </values>
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.2/@targetPatterns.5">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/name"/>
+      </values>
+    </attrConditions>
+  </rules>
+  <rules name="BWDInPortToSubSubGroupVNF" schema="//@schema">
+    <sourcePatterns name="service">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Service"/>
+      <linkVariablePatterns target="//@rules.3/@sourcePatterns.1">
+        <type href="platform:/resource/VNF/model/VNF.ecore#//Service/components"/>
+      </linkVariablePatterns>
+    </sourcePatterns>
+    <sourcePatterns name="vnf">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//VNF_component"/>
+      <linkVariablePatterns target="//@rules.3/@sourcePatterns.2">
+        <op value="++"/>
+        <type href="platform:/resource/VNF/model/VNF.ecore#//VNF_component/inport"/>
+      </linkVariablePatterns>
+    </sourcePatterns>
+    <sourcePatterns name="inPortBWD">
+      <op value="++"/>
+      <type href="platform:/resource/VNF/model/VNF.ecore#//InPortBWD"/>
+    </sourcePatterns>
+    <targetPatterns name="petriNet">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet"/>
+      <linkVariablePatterns target="//@rules.3/@targetPatterns.1">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/groups"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="group">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Group"/>
+      <linkVariablePatterns target="//@rules.3/@targetPatterns.2">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Group/backward"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="subGroupBWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup"/>
+      <linkVariablePatterns target="//@rules.3/@targetPatterns.3">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup/function"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.3/@targetPatterns.5">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup/in"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="functionBWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.3/@targetPatterns.4">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/places"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="placeBWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Place"/>
+    </targetPatterns>
+    <targetPatterns name="InPortBWDGroup">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.3/@targetPatterns.7">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/arcs"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.3/@targetPatterns.6">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/transitions"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="transitionBWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//ImmediateTransition"/>
+    </targetPatterns>
+    <targetPatterns name="arcBWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Arc"/>
+      <linkVariablePatterns target="//@rules.3/@targetPatterns.6">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/from"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.3/@targetPatterns.4">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/to"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <correspondencePatterns name="serviceToPetriNet" type="//@schema/@correspondenceTypes.0" source="//@rules.3/@sourcePatterns.0" target="//@rules.3/@targetPatterns.0"/>
+    <correspondencePatterns name="vnfToGroup" type="//@schema/@correspondenceTypes.2" source="//@rules.3/@sourcePatterns.1" target="//@rules.3/@targetPatterns.1"/>
+    <correspondencePatterns name="inPortToSubSubGroup" type="//@schema/@correspondenceTypes.4" source="//@rules.3/@sourcePatterns.2" target="//@rules.3/@targetPatterns.5">
+      <op value="++"/>
+    </correspondencePatterns>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.3/@sourcePatterns.2">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Port/name"/>
+      </values>
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.3/@targetPatterns.5">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/name"/>
+      </values>
+    </attrConditions>
+  </rules>
+  <rules name="FWDOutPortToSubSubGroupSource" schema="//@schema">
+    <sourcePatterns name="service">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Service"/>
+      <linkVariablePatterns target="//@rules.4/@sourcePatterns.1">
+        <type href="platform:/resource/VNF/model/VNF.ecore#//Service/sources"/>
+      </linkVariablePatterns>
+    </sourcePatterns>
+    <sourcePatterns name="source">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Source"/>
+      <linkVariablePatterns target="//@rules.4/@sourcePatterns.2">
+        <op value="++"/>
+        <type href="platform:/resource/VNF/model/VNF.ecore#//Source/outport"/>
+      </linkVariablePatterns>
+    </sourcePatterns>
+    <sourcePatterns name="outPortFWD">
+      <op value="++"/>
+      <type href="platform:/resource/VNF/model/VNF.ecore#//OutPortFWD"/>
+    </sourcePatterns>
+    <targetPatterns name="petriNet">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet"/>
+      <linkVariablePatterns target="//@rules.4/@targetPatterns.1">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/groups"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="group">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Group"/>
+      <linkVariablePatterns target="//@rules.4/@targetPatterns.2">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Group/forward"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="subGroupFWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup"/>
+      <linkVariablePatterns target="//@rules.4/@targetPatterns.3">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup/function"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.4/@targetPatterns.5">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup/out"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="functionFWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.4/@targetPatterns.4">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/transitions"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="transitionFWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//TimedTransition"/>
+    </targetPatterns>
+    <targetPatterns name="outPortFWDGroup">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.4/@targetPatterns.6">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/places"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.4/@targetPatterns.7">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/arcs"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="placeFWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Place"/>
+    </targetPatterns>
+    <targetPatterns name="arcFWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Arc"/>
+      <linkVariablePatterns target="//@rules.4/@targetPatterns.4">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/from"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.4/@targetPatterns.6">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/to"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <correspondencePatterns name="serviceToPetriNet" type="//@schema/@correspondenceTypes.0" source="//@rules.4/@sourcePatterns.0" target="//@rules.4/@targetPatterns.0"/>
+    <correspondencePatterns name="vnfToGroup" type="//@schema/@correspondenceTypes.3" source="//@rules.4/@sourcePatterns.1" target="//@rules.4/@targetPatterns.1"/>
+    <correspondencePatterns name="OutPortToSubSubGroup" type="//@schema/@correspondenceTypes.5" source="//@rules.4/@sourcePatterns.2" target="//@rules.4/@targetPatterns.5">
+      <op value="++"/>
+    </correspondencePatterns>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.4/@targetPatterns.6">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//Place/queue"/>
+      </values>
+      <values xsi:type="tgg:LiteralExpression" value="&quot;FIFO&quot;"/>
+    </attrConditions>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.4/@sourcePatterns.2">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Port/name"/>
+      </values>
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.4/@targetPatterns.5">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/name"/>
+      </values>
+    </attrConditions>
+  </rules>
+  <rules name="BWDOutPortToSubSubGroupSource" schema="//@schema">
+    <sourcePatterns name="service">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Service"/>
+      <linkVariablePatterns target="//@rules.5/@sourcePatterns.1">
+        <type href="platform:/resource/VNF/model/VNF.ecore#//Service/sources"/>
+      </linkVariablePatterns>
+    </sourcePatterns>
+    <sourcePatterns name="source">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Source"/>
+      <linkVariablePatterns target="//@rules.5/@sourcePatterns.2">
+        <op value="++"/>
+        <type href="platform:/resource/VNF/model/VNF.ecore#//Source/outport"/>
+      </linkVariablePatterns>
+    </sourcePatterns>
+    <sourcePatterns name="outPortBWD">
+      <op value="++"/>
+      <type href="platform:/resource/VNF/model/VNF.ecore#//OutPortBWD"/>
+    </sourcePatterns>
+    <targetPatterns name="petriNet">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet"/>
+      <linkVariablePatterns target="//@rules.5/@targetPatterns.1">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/groups"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="group">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Group"/>
+      <linkVariablePatterns target="//@rules.5/@targetPatterns.2">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Group/backward"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="subGroupBWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup"/>
+      <linkVariablePatterns target="//@rules.5/@targetPatterns.3">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup/function"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.5/@targetPatterns.5">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup/out"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="functionBWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.5/@targetPatterns.4">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/transitions"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="transitionBWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//TimedTransition"/>
+    </targetPatterns>
+    <targetPatterns name="outPortBWDGroup">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.5/@targetPatterns.6">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/places"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.5/@targetPatterns.7">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/arcs"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="placeBWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Place"/>
+    </targetPatterns>
+    <targetPatterns name="arcBWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Arc"/>
+      <linkVariablePatterns target="//@rules.5/@targetPatterns.4">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/from"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.5/@targetPatterns.6">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/to"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <correspondencePatterns name="serviceToPetriNet" type="//@schema/@correspondenceTypes.0" source="//@rules.5/@sourcePatterns.0" target="//@rules.5/@targetPatterns.0"/>
+    <correspondencePatterns name="vnfToGroup" type="//@schema/@correspondenceTypes.3" source="//@rules.5/@sourcePatterns.1" target="//@rules.5/@targetPatterns.1"/>
+    <correspondencePatterns name="OutPortToSubSubGroup" type="//@schema/@correspondenceTypes.5" source="//@rules.5/@sourcePatterns.2" target="//@rules.5/@targetPatterns.5">
+      <op value="++"/>
+    </correspondencePatterns>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.5/@targetPatterns.6">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//Place/queue"/>
+      </values>
+      <values xsi:type="tgg:LiteralExpression" value="&quot;FIFO&quot;"/>
+    </attrConditions>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.5/@sourcePatterns.2">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Port/name"/>
+      </values>
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.5/@targetPatterns.5">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/name"/>
+      </values>
+    </attrConditions>
+  </rules>
+  <rules name="FWDOutPortToSubSubGroup" schema="//@schema">
+    <sourcePatterns name="service">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Service"/>
+      <linkVariablePatterns target="//@rules.6/@sourcePatterns.1">
+        <type href="platform:/resource/VNF/model/VNF.ecore#//Service/components"/>
+      </linkVariablePatterns>
+    </sourcePatterns>
+    <sourcePatterns name="vnf">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//VNF_component"/>
+      <linkVariablePatterns target="//@rules.6/@sourcePatterns.2">
+        <op value="++"/>
+        <type href="platform:/resource/VNF/model/VNF.ecore#//VNF_component/outport"/>
+      </linkVariablePatterns>
+    </sourcePatterns>
+    <sourcePatterns name="outPortFWD">
+      <op value="++"/>
+      <type href="platform:/resource/VNF/model/VNF.ecore#//OutPortFWD"/>
+    </sourcePatterns>
+    <targetPatterns name="petriNet">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet"/>
+      <linkVariablePatterns target="//@rules.6/@targetPatterns.1">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/groups"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="group">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Group"/>
+      <linkVariablePatterns target="//@rules.6/@targetPatterns.2">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Group/forward"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="subGroupFWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup"/>
+      <linkVariablePatterns target="//@rules.6/@targetPatterns.3">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup/function"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.6/@targetPatterns.5">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup/out"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="functionFWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.6/@targetPatterns.4">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/transitions"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="transitionFWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//TimedTransition"/>
+    </targetPatterns>
+    <targetPatterns name="outPortFWDGroup">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.6/@targetPatterns.6">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/places"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.6/@targetPatterns.7">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/arcs"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="placeFWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Place"/>
+    </targetPatterns>
+    <targetPatterns name="arcFWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Arc"/>
+      <linkVariablePatterns target="//@rules.6/@targetPatterns.4">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/from"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.6/@targetPatterns.6">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/to"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <correspondencePatterns name="serviceToPetriNet" type="//@schema/@correspondenceTypes.0" source="//@rules.6/@sourcePatterns.0" target="//@rules.6/@targetPatterns.0"/>
+    <correspondencePatterns name="vnfToGroup" type="//@schema/@correspondenceTypes.2" source="//@rules.6/@sourcePatterns.1" target="//@rules.6/@targetPatterns.1"/>
+    <correspondencePatterns name="OutPortToSubSubGroup" type="//@schema/@correspondenceTypes.5" source="//@rules.6/@sourcePatterns.2" target="//@rules.6/@targetPatterns.5">
+      <op value="++"/>
+    </correspondencePatterns>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.6/@targetPatterns.6">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//Place/queue"/>
+      </values>
+      <values xsi:type="tgg:LiteralExpression" value="&quot;FIFO&quot;"/>
+    </attrConditions>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.6/@sourcePatterns.2">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Port/name"/>
+      </values>
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.6/@targetPatterns.5">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/name"/>
+      </values>
+    </attrConditions>
+  </rules>
+  <rules name="BWDOutPortToSubSubGroup" schema="//@schema">
+    <sourcePatterns name="service">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Service"/>
+      <linkVariablePatterns target="//@rules.7/@sourcePatterns.1">
+        <type href="platform:/resource/VNF/model/VNF.ecore#//Service/components"/>
+      </linkVariablePatterns>
+    </sourcePatterns>
+    <sourcePatterns name="vnf">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//VNF_component"/>
+      <linkVariablePatterns target="//@rules.7/@sourcePatterns.2">
+        <op value="++"/>
+        <type href="platform:/resource/VNF/model/VNF.ecore#//VNF_component/outport"/>
+      </linkVariablePatterns>
+    </sourcePatterns>
+    <sourcePatterns name="outPortBWD">
+      <op value="++"/>
+      <type href="platform:/resource/VNF/model/VNF.ecore#//OutPortBWD"/>
+    </sourcePatterns>
+    <targetPatterns name="petriNet">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet"/>
+      <linkVariablePatterns target="//@rules.7/@targetPatterns.1">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/groups"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="group">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Group"/>
+      <linkVariablePatterns target="//@rules.7/@targetPatterns.2">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Group/backward"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="subGroupBWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup"/>
+      <linkVariablePatterns target="//@rules.7/@targetPatterns.3">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup/function"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.7/@targetPatterns.5">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup/out"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="functionBWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.7/@targetPatterns.4">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/transitions"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="transitionBWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//TimedTransition"/>
+    </targetPatterns>
+    <targetPatterns name="outPortBWDGroup">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.7/@targetPatterns.6">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/places"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.7/@targetPatterns.7">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/arcs"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="placeBWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Place"/>
+    </targetPatterns>
+    <targetPatterns name="arcBWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Arc"/>
+      <linkVariablePatterns target="//@rules.7/@targetPatterns.4">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/from"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.7/@targetPatterns.6">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/to"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <correspondencePatterns name="serviceToPetriNet" type="//@schema/@correspondenceTypes.0" source="//@rules.7/@sourcePatterns.0" target="//@rules.7/@targetPatterns.0"/>
+    <correspondencePatterns name="vnfToGroup" type="//@schema/@correspondenceTypes.2" source="//@rules.7/@sourcePatterns.1" target="//@rules.7/@targetPatterns.1"/>
+    <correspondencePatterns name="OutPortToSubSubGroup" type="//@schema/@correspondenceTypes.5" source="//@rules.7/@sourcePatterns.2" target="//@rules.7/@targetPatterns.5">
+      <op value="++"/>
+    </correspondencePatterns>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.7/@targetPatterns.6">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//Place/queue"/>
+      </values>
+      <values xsi:type="tgg:LiteralExpression" value="&quot;FIFO&quot;"/>
+    </attrConditions>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.7/@sourcePatterns.2">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Port/name"/>
+      </values>
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.7/@targetPatterns.5">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/name"/>
+      </values>
+    </attrConditions>
+  </rules>
+  <rules name="ServiceToPetriNet" schema="//@schema">
+    <sourcePatterns name="service">
+      <op value="++"/>
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Service"/>
+    </sourcePatterns>
+    <targetPatterns name="petriNet">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet"/>
+    </targetPatterns>
+    <correspondencePatterns name="serviceToPetriNet" type="//@schema/@correspondenceTypes.0" source="//@rules.8/@sourcePatterns.0" target="//@rules.8/@targetPatterns.0">
+      <op value="++"/>
+    </correspondencePatterns>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.8/@sourcePatterns.0">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Service/name"/>
+      </values>
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.8/@targetPatterns.0">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/name"/>
+      </values>
+    </attrConditions>
+  </rules>
+  <rules name="SourceToGroup" schema="//@schema">
+    <sourcePatterns name="service">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Service"/>
+      <linkVariablePatterns target="//@rules.9/@sourcePatterns.1">
+        <op value="++"/>
+        <type href="platform:/resource/VNF/model/VNF.ecore#//Service/sources"/>
+      </linkVariablePatterns>
+    </sourcePatterns>
+    <sourcePatterns name="source">
+      <op value="++"/>
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Source"/>
+    </sourcePatterns>
+    <targetPatterns name="petriNet">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet"/>
+      <linkVariablePatterns target="//@rules.9/@targetPatterns.1">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/groups"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="group">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Group"/>
+      <linkVariablePatterns target="//@rules.9/@targetPatterns.2">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Group/backward"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.9/@targetPatterns.3">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Group/forward"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="subGroupBWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup"/>
+      <linkVariablePatterns target="//@rules.9/@targetPatterns.4">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup/function"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="subGroupFWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup"/>
+      <linkVariablePatterns target="//@rules.9/@targetPatterns.6">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup/function"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="functionBWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.9/@targetPatterns.5">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/places"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="placeBWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Place"/>
+    </targetPatterns>
+    <targetPatterns name="functionFWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.9/@targetPatterns.7">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/transitions"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="transitionFWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//TimedTransition"/>
+    </targetPatterns>
+    <correspondencePatterns name="serviceToPetriNet" type="//@schema/@correspondenceTypes.0" source="//@rules.9/@sourcePatterns.0" target="//@rules.9/@targetPatterns.0"/>
+    <correspondencePatterns name="sourceToGroup" type="//@schema/@correspondenceTypes.3" source="//@rules.9/@sourcePatterns.1" target="//@rules.9/@targetPatterns.1">
+      <op value="++"/>
+    </correspondencePatterns>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.9/@targetPatterns.5">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//Place/queue"/>
+      </values>
+      <values xsi:type="tgg:LiteralExpression" value="&quot;FIFO&quot;"/>
+    </attrConditions>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.9/@targetPatterns.5">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//Element/name"/>
+      </values>
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.9/@sourcePatterns.1">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Source/name"/>
+      </values>
+    </attrConditions>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.9/@sourcePatterns.1">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Source/name"/>
+      </values>
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.9/@targetPatterns.1">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//Group/name"/>
+      </values>
+    </attrConditions>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.9/@targetPatterns.7">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//TimedTransition/timeFunction"/>
+      </values>
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.9/@sourcePatterns.1">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Source/generationPeriod"/>
+      </values>
+    </attrConditions>
+  </rules>
+  <rules name="FWDVLinksToArcs" schema="//@schema">
+    <sourcePatterns name="service">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Service"/>
+      <linkVariablePatterns target="//@rules.10/@sourcePatterns.1">
+        <op value="++"/>
+        <type href="platform:/resource/VNF/model/VNF.ecore#//Service/connectors"/>
+      </linkVariablePatterns>
+    </sourcePatterns>
+    <sourcePatterns name="vLinkFWD">
+      <op value="++"/>
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Vlink"/>
+      <linkVariablePatterns target="//@rules.10/@sourcePatterns.2">
+        <op value="++"/>
+        <type href="platform:/resource/VNF/model/VNF.ecore#//Vlink/source"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.10/@sourcePatterns.3">
+        <op value="++"/>
+        <type href="platform:/resource/VNF/model/VNF.ecore#//Vlink/target"/>
+      </linkVariablePatterns>
+    </sourcePatterns>
+    <sourcePatterns name="srcFWD">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//OutPortFWD"/>
+    </sourcePatterns>
+    <sourcePatterns name="trgFWD">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//InPortFWD"/>
+    </sourcePatterns>
+    <targetPatterns name="petriNet">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet"/>
+      <linkVariablePatterns target="//@rules.10/@targetPatterns.7">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/arcs"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.10/@targetPatterns.5">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/arcs"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.10/@targetPatterns.9">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/arcs"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.10/@targetPatterns.8">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/flyingPlaces"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="outPortFWDGroup">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.10/@targetPatterns.2">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/places"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="placeFWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Place"/>
+    </targetPatterns>
+    <targetPatterns name="InPortFWDGroup">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.10/@targetPatterns.4">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/transitions"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="InPortFWDImmediateTransition">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//ImmediateTransition"/>
+    </targetPatterns>
+    <targetPatterns name="helpArcFWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Arc"/>
+      <linkVariablePatterns target="//@rules.10/@targetPatterns.2">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/from"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.10/@targetPatterns.6">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/to"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="transitionFWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//ImmediateTransition"/>
+    </targetPatterns>
+    <targetPatterns name="arcFWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Arc"/>
+      <linkVariablePatterns target="//@rules.10/@targetPatterns.6">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/from"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.10/@targetPatterns.8">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/to"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="placeToInportFWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Place"/>
+    </targetPatterns>
+    <targetPatterns name="arcToInPortFWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Arc"/>
+      <linkVariablePatterns target="//@rules.10/@targetPatterns.8">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/from"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.10/@targetPatterns.4">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/to"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <correspondencePatterns name="serviceToPetriNet" type="//@schema/@correspondenceTypes.0" source="//@rules.10/@sourcePatterns.0" target="//@rules.10/@targetPatterns.0"/>
+    <correspondencePatterns name="outPortToSubSubGroupFWD" type="//@schema/@correspondenceTypes.5" source="//@rules.10/@sourcePatterns.2" target="//@rules.10/@targetPatterns.1"/>
+    <correspondencePatterns name="inPortToSubSubGroupFWD" type="//@schema/@correspondenceTypes.4" source="//@rules.10/@sourcePatterns.3" target="//@rules.10/@targetPatterns.3"/>
+    <correspondencePatterns name="vLinkToArcFWD" type="//@schema/@correspondenceTypes.1" source="//@rules.10/@sourcePatterns.1" target="//@rules.10/@targetPatterns.7">
+      <op value="++"/>
+    </correspondencePatterns>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.10/@targetPatterns.6">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//ImmediateTransition/weight"/>
+      </values>
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.10/@sourcePatterns.1">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Vlink/probability"/>
+      </values>
+    </attrConditions>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.10/@targetPatterns.7">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//Arc/text"/>
+      </values>
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.10/@sourcePatterns.1">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Vlink/dataManipulation"/>
+      </values>
+    </attrConditions>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.10/@targetPatterns.8">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//Place/queue"/>
+      </values>
+      <values xsi:type="tgg:LiteralExpression" value="&quot;FIFO&quot;"/>
+    </attrConditions>
+  </rules>
+  <rules name="BWDVLinksToArcs" schema="//@schema">
+    <sourcePatterns name="service">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Service"/>
+      <linkVariablePatterns target="//@rules.11/@sourcePatterns.1">
+        <op value="++"/>
+        <type href="platform:/resource/VNF/model/VNF.ecore#//Service/connectors"/>
+      </linkVariablePatterns>
+    </sourcePatterns>
+    <sourcePatterns name="vLinkBWD">
+      <op value="++"/>
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Vlink"/>
+      <linkVariablePatterns target="//@rules.11/@sourcePatterns.2">
+        <op value="++"/>
+        <type href="platform:/resource/VNF/model/VNF.ecore#//Vlink/source"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.11/@sourcePatterns.3">
+        <op value="++"/>
+        <type href="platform:/resource/VNF/model/VNF.ecore#//Vlink/target"/>
+      </linkVariablePatterns>
+    </sourcePatterns>
+    <sourcePatterns name="srcBWD">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//OutPortBWD"/>
+    </sourcePatterns>
+    <sourcePatterns name="trgBWD">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//InPortBWD"/>
+    </sourcePatterns>
+    <targetPatterns name="petriNet">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet"/>
+      <linkVariablePatterns target="//@rules.11/@targetPatterns.7">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/arcs"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.11/@targetPatterns.5">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/arcs"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.11/@targetPatterns.9">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/arcs"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.11/@targetPatterns.8">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/flyingPlaces"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="outPortBWDGroup">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.11/@targetPatterns.2">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/places"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="placeBWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Place"/>
+    </targetPatterns>
+    <targetPatterns name="InPortBWDGroup">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.11/@targetPatterns.4">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/transitions"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="InPortBWDImmediateTransition">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//ImmediateTransition"/>
+    </targetPatterns>
+    <targetPatterns name="helpArcBWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Arc"/>
+      <linkVariablePatterns target="//@rules.11/@targetPatterns.2">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/from"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.11/@targetPatterns.6">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/to"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="transitionBWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//ImmediateTransition"/>
+    </targetPatterns>
+    <targetPatterns name="arcBWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Arc"/>
+      <linkVariablePatterns target="//@rules.11/@targetPatterns.6">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/from"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.11/@targetPatterns.8">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/to"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="placeToInportBWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Place"/>
+    </targetPatterns>
+    <targetPatterns name="arcToInPortBWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Arc"/>
+      <linkVariablePatterns target="//@rules.11/@targetPatterns.8">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/from"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.11/@targetPatterns.4">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/to"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <correspondencePatterns name="serviceToPetriNet" type="//@schema/@correspondenceTypes.0" source="//@rules.11/@sourcePatterns.0" target="//@rules.11/@targetPatterns.0"/>
+    <correspondencePatterns name="outPortToSubSubGroupBWD" type="//@schema/@correspondenceTypes.5" source="//@rules.11/@sourcePatterns.2" target="//@rules.11/@targetPatterns.1"/>
+    <correspondencePatterns name="inPortToSubSubGroupBWD" type="//@schema/@correspondenceTypes.4" source="//@rules.11/@sourcePatterns.3" target="//@rules.11/@targetPatterns.3"/>
+    <correspondencePatterns name="vLinkToArcBWD" type="//@schema/@correspondenceTypes.1" source="//@rules.11/@sourcePatterns.1" target="//@rules.11/@targetPatterns.7">
+      <op value="++"/>
+    </correspondencePatterns>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.11/@targetPatterns.6">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//ImmediateTransition/weight"/>
+      </values>
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.11/@sourcePatterns.1">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Vlink/probability"/>
+      </values>
+    </attrConditions>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.11/@targetPatterns.7">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//Arc/text"/>
+      </values>
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.11/@sourcePatterns.1">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Vlink/dataManipulation"/>
+      </values>
+    </attrConditions>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.11/@targetPatterns.8">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//Place/queue"/>
+      </values>
+      <values xsi:type="tgg:LiteralExpression" value="&quot;FIFO&quot;"/>
+    </attrConditions>
+  </rules>
+  <rules name="FWDToBWDVLinksToArcs" schema="//@schema">
+    <sourcePatterns name="service">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Service"/>
+      <linkVariablePatterns target="//@rules.12/@sourcePatterns.1">
+        <op value="++"/>
+        <type href="platform:/resource/VNF/model/VNF.ecore#//Service/connectors"/>
+      </linkVariablePatterns>
+    </sourcePatterns>
+    <sourcePatterns name="vLinkFWDToBWD">
+      <op value="++"/>
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Vlink"/>
+      <linkVariablePatterns target="//@rules.12/@sourcePatterns.2">
+        <op value="++"/>
+        <type href="platform:/resource/VNF/model/VNF.ecore#//Vlink/source"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.12/@sourcePatterns.3">
+        <op value="++"/>
+        <type href="platform:/resource/VNF/model/VNF.ecore#//Vlink/target"/>
+      </linkVariablePatterns>
+    </sourcePatterns>
+    <sourcePatterns name="srcFWD">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//OutPortFWD"/>
+    </sourcePatterns>
+    <sourcePatterns name="trgBWD">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//InPortBWD"/>
+    </sourcePatterns>
+    <targetPatterns name="petriNet">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet"/>
+      <linkVariablePatterns target="//@rules.12/@targetPatterns.7">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/arcs"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.12/@targetPatterns.5">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/arcs"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.12/@targetPatterns.9">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/arcs"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.12/@targetPatterns.8">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/flyingPlaces"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="outPortFWDGroup">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.12/@targetPatterns.2">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/places"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="placeFWDToBWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Place"/>
+    </targetPatterns>
+    <targetPatterns name="InPortBWDGroup">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.12/@targetPatterns.4">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/transitions"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="InPortBWDImmediateTransition">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//ImmediateTransition"/>
+    </targetPatterns>
+    <targetPatterns name="helpArcFWDToBWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Arc"/>
+      <linkVariablePatterns target="//@rules.12/@targetPatterns.2">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/from"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.12/@targetPatterns.6">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/to"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="transitionFWDToBWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//ImmediateTransition"/>
+    </targetPatterns>
+    <targetPatterns name="arcFWDToBWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Arc"/>
+      <linkVariablePatterns target="//@rules.12/@targetPatterns.6">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/from"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.12/@targetPatterns.8">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/to"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="placeToInportFWDToBWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Place"/>
+    </targetPatterns>
+    <targetPatterns name="arcToInPortFWDToBWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Arc"/>
+      <linkVariablePatterns target="//@rules.12/@targetPatterns.8">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/from"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.12/@targetPatterns.4">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/to"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <correspondencePatterns name="serviceToPetriNet" type="//@schema/@correspondenceTypes.0" source="//@rules.12/@sourcePatterns.0" target="//@rules.12/@targetPatterns.0"/>
+    <correspondencePatterns name="outPortToSubSubGroupFWD" type="//@schema/@correspondenceTypes.5" source="//@rules.12/@sourcePatterns.2" target="//@rules.12/@targetPatterns.1"/>
+    <correspondencePatterns name="inPortToSubSubGroupBWD" type="//@schema/@correspondenceTypes.4" source="//@rules.12/@sourcePatterns.3" target="//@rules.12/@targetPatterns.3"/>
+    <correspondencePatterns name="vLinkToArcBWD" type="//@schema/@correspondenceTypes.1" source="//@rules.12/@sourcePatterns.1" target="//@rules.12/@targetPatterns.7">
+      <op value="++"/>
+    </correspondencePatterns>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.12/@targetPatterns.6">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//ImmediateTransition/weight"/>
+      </values>
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.12/@sourcePatterns.1">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Vlink/probability"/>
+      </values>
+    </attrConditions>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.12/@targetPatterns.7">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//Arc/text"/>
+      </values>
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.12/@sourcePatterns.1">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Vlink/dataManipulation"/>
+      </values>
+    </attrConditions>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.12/@targetPatterns.8">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//Place/queue"/>
+      </values>
+      <values xsi:type="tgg:LiteralExpression" value="&quot;FIFO&quot;"/>
+    </attrConditions>
+  </rules>
+  <rules name="BWDToFWDVLinksToArcs" schema="//@schema">
+    <sourcePatterns name="service">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Service"/>
+      <linkVariablePatterns target="//@rules.13/@sourcePatterns.1">
+        <op value="++"/>
+        <type href="platform:/resource/VNF/model/VNF.ecore#//Service/connectors"/>
+      </linkVariablePatterns>
+    </sourcePatterns>
+    <sourcePatterns name="vLinkBWDToFWD">
+      <op value="++"/>
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Vlink"/>
+      <linkVariablePatterns target="//@rules.13/@sourcePatterns.2">
+        <op value="++"/>
+        <type href="platform:/resource/VNF/model/VNF.ecore#//Vlink/source"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.13/@sourcePatterns.3">
+        <op value="++"/>
+        <type href="platform:/resource/VNF/model/VNF.ecore#//Vlink/target"/>
+      </linkVariablePatterns>
+    </sourcePatterns>
+    <sourcePatterns name="srcBWD">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//OutPortBWD"/>
+    </sourcePatterns>
+    <sourcePatterns name="trgFWD">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//InPortFWD"/>
+    </sourcePatterns>
+    <targetPatterns name="petriNet">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet"/>
+      <linkVariablePatterns target="//@rules.13/@targetPatterns.7">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/arcs"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.13/@targetPatterns.5">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/arcs"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.13/@targetPatterns.9">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/arcs"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.13/@targetPatterns.8">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/flyingPlaces"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="outPortBWDGroup">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.13/@targetPatterns.2">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/places"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="placeBWDToFWD">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Place"/>
+    </targetPatterns>
+    <targetPatterns name="InPortFWDGroup">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.13/@targetPatterns.4">
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/transitions"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="InPortFWDImmediateTransition">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//ImmediateTransition"/>
+    </targetPatterns>
+    <targetPatterns name="helpArcBWDToFWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Arc"/>
+      <linkVariablePatterns target="//@rules.13/@targetPatterns.2">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/from"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.13/@targetPatterns.6">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/to"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="transitionBWDToFWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//ImmediateTransition"/>
+    </targetPatterns>
+    <targetPatterns name="arcBWDToFWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Arc"/>
+      <linkVariablePatterns target="//@rules.13/@targetPatterns.6">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/from"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.13/@targetPatterns.8">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/to"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="placeToInportBWDToFWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Place"/>
+    </targetPatterns>
+    <targetPatterns name="arcToInPortBWDToFWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Arc"/>
+      <linkVariablePatterns target="//@rules.13/@targetPatterns.8">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/from"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.13/@targetPatterns.4">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/to"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <correspondencePatterns name="serviceToPetriNet" type="//@schema/@correspondenceTypes.0" source="//@rules.13/@sourcePatterns.0" target="//@rules.13/@targetPatterns.0"/>
+    <correspondencePatterns name="outPortToSubSubGroupBWD" type="//@schema/@correspondenceTypes.5" source="//@rules.13/@sourcePatterns.2" target="//@rules.13/@targetPatterns.1"/>
+    <correspondencePatterns name="inPortToSubSubGroupFWD" type="//@schema/@correspondenceTypes.4" source="//@rules.13/@sourcePatterns.3" target="//@rules.13/@targetPatterns.3"/>
+    <correspondencePatterns name="vLinkToArcBWD" type="//@schema/@correspondenceTypes.1" source="//@rules.13/@sourcePatterns.1" target="//@rules.13/@targetPatterns.7">
+      <op value="++"/>
+    </correspondencePatterns>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.13/@targetPatterns.6">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//ImmediateTransition/weight"/>
+      </values>
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.13/@sourcePatterns.1">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Vlink/probability"/>
+      </values>
+    </attrConditions>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.13/@targetPatterns.7">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//Arc/text"/>
+      </values>
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.13/@sourcePatterns.1">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Vlink/dataManipulation"/>
+      </values>
+    </attrConditions>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.13/@targetPatterns.8">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//Place/queue"/>
+      </values>
+      <values xsi:type="tgg:LiteralExpression" value="&quot;FIFO&quot;"/>
+    </attrConditions>
+  </rules>
+  <rules name="VNFToGroup" schema="//@schema">
+    <sourcePatterns name="service">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Service"/>
+      <linkVariablePatterns target="//@rules.14/@sourcePatterns.1">
+        <op value="++"/>
+        <type href="platform:/resource/VNF/model/VNF.ecore#//Service/components"/>
+      </linkVariablePatterns>
+    </sourcePatterns>
+    <sourcePatterns name="vnf">
+      <op value="++"/>
+      <type href="platform:/resource/VNF/model/VNF.ecore#//VNF_component"/>
+    </sourcePatterns>
+    <targetPatterns name="petriNet">
+      <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet"/>
+      <linkVariablePatterns target="//@rules.14/@targetPatterns.1">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/groups"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.14/@targetPatterns.7">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/arcs"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.14/@targetPatterns.11">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//PetriNet/arcs"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="group">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Group"/>
+      <linkVariablePatterns target="//@rules.14/@targetPatterns.2">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Group/backward"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.14/@targetPatterns.3">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Group/forward"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="subGroupBWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup"/>
+      <linkVariablePatterns target="//@rules.14/@targetPatterns.4">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup/function"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="subGroupFWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup"/>
+      <linkVariablePatterns target="//@rules.14/@targetPatterns.8">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubGroup/function"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="functionBWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.14/@targetPatterns.7">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/arcs"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.14/@targetPatterns.5">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/places"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.14/@targetPatterns.6">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/transitions"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="placeBWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Place"/>
+    </targetPatterns>
+    <targetPatterns name="transitionBWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//TimedTransition"/>
+    </targetPatterns>
+    <targetPatterns name="arcBWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Arc"/>
+      <linkVariablePatterns target="//@rules.14/@targetPatterns.5">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/from"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.14/@targetPatterns.6">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/to"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="functionFWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup"/>
+      <linkVariablePatterns target="//@rules.14/@targetPatterns.11">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/arcs"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.14/@targetPatterns.9">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/places"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.14/@targetPatterns.10">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//SubSubGroup/transitions"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <targetPatterns name="placeFWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Place"/>
+    </targetPatterns>
+    <targetPatterns name="transitionFWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//TimedTransition"/>
+    </targetPatterns>
+    <targetPatterns name="arcFWD">
+      <op value="++"/>
+      <type href="platform:/resource/QPN/model/QPN.ecore#//Arc"/>
+      <linkVariablePatterns target="//@rules.14/@targetPatterns.9">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/from"/>
+      </linkVariablePatterns>
+      <linkVariablePatterns target="//@rules.14/@targetPatterns.10">
+        <op value="++"/>
+        <type href="platform:/resource/QPN/model/QPN.ecore#//Arc/to"/>
+      </linkVariablePatterns>
+    </targetPatterns>
+    <correspondencePatterns name="serviceToPetriNet" type="//@schema/@correspondenceTypes.0" source="//@rules.14/@sourcePatterns.0" target="//@rules.14/@targetPatterns.0"/>
+    <correspondencePatterns name="vnfToGroup" type="//@schema/@correspondenceTypes.2" source="//@rules.14/@sourcePatterns.1" target="//@rules.14/@targetPatterns.1">
+      <op value="++"/>
+    </correspondencePatterns>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.14/@sourcePatterns.1">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//VNF_component/name"/>
+      </values>
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.14/@targetPatterns.1">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//Group/name"/>
+      </values>
+    </attrConditions>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.14/@targetPatterns.6">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//TimedTransition/timeFunction"/>
+      </values>
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.14/@sourcePatterns.1">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//VNF_component/processingTime"/>
+      </values>
+    </attrConditions>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.14/@targetPatterns.10">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//TimedTransition/timeFunction"/>
+      </values>
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.14/@sourcePatterns.1">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//VNF_component/processingTime"/>
+      </values>
+    </attrConditions>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.14/@targetPatterns.5">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//Place/queue"/>
+      </values>
+      <values xsi:type="tgg:LiteralExpression" value="&quot;FIFO&quot;"/>
+    </attrConditions>
+    <attrConditions name="//@schema/@attributeCondDefs.0">
+      <values xsi:type="tgg:AttributeExpression" objectVar="//@rules.14/@targetPatterns.9">
+        <attribute href="platform:/resource/QPN/model/QPN.ecore#//Place/queue"/>
+      </values>
+      <values xsi:type="tgg:LiteralExpression" value="&quot;FIFO&quot;"/>
+    </attrConditions>
+  </rules>
+</tgg:TripleGraphGrammarFile>
