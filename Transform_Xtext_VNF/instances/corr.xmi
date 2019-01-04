@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Transform_Xtext_VNF="platform:/resource/Transform_Xtext_VNF/model/Transform_Xtext_VNF.ecore">
+  <Transform_Xtext_VNF:ServiceToService>
+    <source href="src.xmi#/"/>
+    <target href="trg.xmi#/0"/>
+  </Transform_Xtext_VNF:ServiceToService>
+  <Transform_Xtext_VNF:VnfToVnf>
+    <source href="src.xmi#//@components.1"/>
+    <target href="trg.xmi#/0/@components.0"/>
+  </Transform_Xtext_VNF:VnfToVnf>
+  <Transform_Xtext_VNF:InPortToInPort>
+    <source href="src.xmi#//@components.1/@ports/@inPort.0"/>
+    <target href="trg.xmi#/1"/>
+  </Transform_Xtext_VNF:InPortToInPort>
+  <Transform_Xtext_VNF:VnfToVnf>
+    <source href="src.xmi#//@components.0"/>
+    <target href="trg.xmi#/0/@components.1"/>
+  </Transform_Xtext_VNF:VnfToVnf>
+  <Transform_Xtext_VNF:InPortToInPort>
+    <source href="src.xmi#//@components.0/@ports/@inPort.0"/>
+    <target href="trg.xmi#/2"/>
+  </Transform_Xtext_VNF:InPortToInPort>
+  <Transform_Xtext_VNF:OutPortToOutPort>
+    <source href="src.xmi#//@components.1/@ports/@outPort.0"/>
+    <target href="trg.xmi#/3"/>
+  </Transform_Xtext_VNF:OutPortToOutPort>
+  <Transform_Xtext_VNF:OutPortToOutPort>
+    <source href="src.xmi#//@components.0/@ports/@outPort.0"/>
+    <target href="trg.xmi#/4"/>
+  </Transform_Xtext_VNF:OutPortToOutPort>
+  <Transform_Xtext_VNF:VLinkToVLink>
+    <source href="src.xmi#//@connectors.0"/>
+    <target href="trg.xmi#/0/@connectors.0"/>
+  </Transform_Xtext_VNF:VLinkToVLink>
+  <Transform_Xtext_VNF:VLinkToVLink>
+    <source href="src.xmi#//@connectors.1"/>
+    <target href="trg.xmi#/0/@connectors.1"/>
+  </Transform_Xtext_VNF:VLinkToVLink>
+</xmi:XMI>

@@ -1,0 +1,35 @@
+service test:
+	sources:
+		-user:
+			in:
+				up1 sync
+				up2
+			out:
+				uo1
+	vnfs:
+		-vnf2:
+			fwdPorts:
+				
+			bwdPorts:
+				out:
+					v2o3
+					v2o4
+		-vnf3:
+			fwdPorts:
+				in:
+					i
+			bwdPorts:
+					out:
+					v3o1
+			
+	vlinks:
+		-v1:v3o1->up1(probability="100")
+	
+		-v2:v2o3->up1(probability="100", data_manipulation="3x")
+		
+		
+		-v4:v2o4->i(probability="50")
+		-v5:v2o4->up2(probability="50")
+		-v6:v2o4->up1(probability="0")
+		
+		

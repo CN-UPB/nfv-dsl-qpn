@@ -1,0 +1,50 @@
+#import "platform:/resource/VNF/model/VNF.ecore"
+#import "platform:/resource/QPN/model/QPN.ecore"
+
+#schema Transform_VNF_QPN
+	
+#source {
+	VNF
+}
+
+#target { 
+	QPN
+} 
+
+#correspondence {
+	ServiceToPetriNet {
+		#src->Service
+		#trg->PetriNet
+	}
+	
+	VLinkToArc {
+		#src->Vlink
+		#trg->Arc
+	}
+	
+	VNFToGroup {
+		#src->VNF_component
+		#trg->Group
+	}
+	
+	SourceToGroup {
+		#src->Source
+		#trg->Group
+	}
+		
+	
+	InPortToSubSubGroup {
+		#src->InPort
+		#trg->SubSubGroup
+	}
+	
+	OutPortToSubSubGroup {
+		#src->OutPort
+		#trg->SubSubGroup
+	}
+	
+}
+
+#attributeConditions {
+	
+}

@@ -1,0 +1,18 @@
+service sNr:
+	vnfs:
+		-vnfNr1:
+			ports:
+				in:	inNr1 sync
+					
+				out:
+					outNr1 
+		-vnfNr2:
+			ports:
+				in:
+					inNr2
+				out:
+					outNr2 
+					
+	vlinks:
+		-vLink1: outNr1 -> inNr2 (probability ="Probability")
+		-vlink2: outNr2 -> inNr1 (probability="Probability")

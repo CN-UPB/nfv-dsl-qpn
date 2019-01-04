@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:VNF_to_QPN="platform:/resource/VNF_to_QPN/model/VNF_to_QPN.ecore">
+  <VNF_to_QPN:Service name="test">
+    <components name="vnf3" outport="/1"/>
+    <components name="vnf2" outport="/3"/>
+    <sources name="user" inport="/2"/>
+    <connectors name="multipleLinksAufEinemInput" probability="100" target="/2" source="/1"/>
+    <connectors name="v2" probability="100" dataManipulation="3x" target="/2" source="/3"/>
+  </VNF_to_QPN:Service>
+  <VNF_to_QPN:OutPortFWD name="v3o1" target="/0/@connectors.0"/>
+  <VNF_to_QPN:InPortBWD name="up1" isSynchronized="true" source="/0/@connectors.0 /0/@connectors.1" ingoingLinks="2"/>
+  <VNF_to_QPN:OutPortFWD name="v2o3" target="/0/@connectors.1"/>
+</xmi:XMI>

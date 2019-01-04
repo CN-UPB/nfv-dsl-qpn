@@ -1,0 +1,81 @@
+#using Transform_VNF_QPN.*
+#using AttrCondDefLibrary.*
+
+#rule SourceToGroup #with Transform_VNF_QPN
+
+#source { 
+	service: Service {
+		++ -sources-> source
+	}
+	
+	++source: Source {
+		
+	}
+}
+
+#target {
+	
+	petriNet: PetriNet {
+		++ -groups-> group
+	}
+	
+	++group: Group {
+		++-backward->subGroupBWD
+		++-forward->subGroupFWD
+		
+	}
+	
+	++subGroupBWD :SubGroup {
+		++-function-> functionBWD
+	}
+	
+	
+	++subGroupFWD: SubGroup {
+		++-function->functionFWD
+		
+	}
+	
+	++functionBWD : SubSubGroup {
+		++-places->placeBWD
+	}
+	++placeBWD :Place {
+				
+	}
+	
+	
+	
+	++functionFWD : SubSubGroup {
+		++-transitions->transitionFWD
+	}
+	
+	
+	++transitionFWD: TimedTransition {
+		
+		
+	}
+	
+
+	
+	
+}
+
+#correspondence {
+	
+	serviceToPetriNet:ServiceToPetriNet {
+		#src-> service
+		#trg-> petriNet
+	}
+	
+	++ sourceToGroup:SourceToGroup {
+		#src->source
+		#trg->group
+	}
+	
+}
+
+#attributeConditions {
+	eq_string(placeBWD.queue,"FIFO")
+	eq_string(placeBWD.name, source.name)
+	eq_string(source.name, group.name)	
+	eq_string(transitionFWD.timeFunction, source.generationPeriod)
+}

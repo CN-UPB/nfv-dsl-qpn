@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="ASCII"?>
+<language:TGG xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:language="platform:/plugin/org.emoflon.ibex.tgg.core.language/model/Language.ecore" name="Transform_Xtext_VNF">
+  <src href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#/"/>
+  <trg href="platform:/resource/VNF/model/VNF.ecore#/"/>
+  <corr href="platform:/resource/Transform_Xtext_VNF/model/Transform_Xtext_VNF.ecore#/"/>
+  <rules name="InP2InPFWD">
+    <nodes name="vnf" outgoingEdges="//@rules.0/@edges.0" incomingCorrsSource="//@rules.0/@nodes.5">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//VNF"/>
+    </nodes>
+    <nodes name="fwdPorts" incomingEdges="//@rules.0/@edges.0" outgoingEdges="//@rules.0/@edges.1">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//FWDPort"/>
+    </nodes>
+    <nodes name="inPort" bindingType="CREATE" incomingEdges="//@rules.0/@edges.1" incomingCorrsSource="//@rules.0/@nodes.6">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//InPort"/>
+    </nodes>
+    <nodes name="trgVnf" domainType="TRG" outgoingEdges="//@rules.0/@edges.2" incomingCorrsTarget="//@rules.0/@nodes.5">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//VNF_component"/>
+    </nodes>
+    <nodes name="trgInPortFWD" domainType="TRG" bindingType="CREATE" incomingEdges="//@rules.0/@edges.2" incomingCorrsTarget="//@rules.0/@nodes.6">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//InPortFWD"/>
+    </nodes>
+    <nodes xsi:type="language:TGGRuleCorr" name="vnf2vnf" domainType="CORR" source="//@rules.0/@nodes.0" target="//@rules.0/@nodes.3">
+      <type href="platform:/resource/Transform_Xtext_VNF/model/Transform_Xtext_VNF.ecore#//VnfToVnf"/>
+    </nodes>
+    <nodes xsi:type="language:TGGRuleCorr" name="inport2inport" domainType="CORR" bindingType="CREATE" source="//@rules.0/@nodes.2" target="//@rules.0/@nodes.4">
+      <type href="platform:/resource/Transform_Xtext_VNF/model/Transform_Xtext_VNF.ecore#//InPortToInPort"/>
+    </nodes>
+    <edges name="vnf__fwdPorts__fwdPorts_eMoflonEdge" srcNode="//@rules.0/@nodes.0" trgNode="//@rules.0/@nodes.1">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//VNF/fwdPorts"/>
+    </edges>
+    <edges name="fwdPorts__inPort__inPort_eMoflonEdge" bindingType="CREATE" srcNode="//@rules.0/@nodes.1" trgNode="//@rules.0/@nodes.2">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//FWDPort/inPort"/>
+    </edges>
+    <edges name="trgVnf__inport__trgInPortFWD_eMoflonEdge" domainType="TRG" bindingType="CREATE" srcNode="//@rules.0/@nodes.3" trgNode="//@rules.0/@nodes.4">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//VNF_component/inport"/>
+    </edges>
+    <attributeConditionLibrary>
+      <tggAttributeConstraints definition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1" parameters="//@rules.0/@attributeConditionLibrary/@parameterValues.0 //@rules.0/@attributeConditionLibrary/@parameterValues.1"/>
+      <tggAttributeConstraints definition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.2" parameters="//@rules.0/@attributeConditionLibrary/@parameterValues.2 //@rules.0/@attributeConditionLibrary/@parameterValues.3"/>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.0" objectVar="//@rules.0/@nodes.2">
+        <attribute href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//InPort/name"/>
+      </parameterValues>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.1" objectVar="//@rules.0/@nodes.4">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Port/name"/>
+      </parameterValues>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.2/@parameterDefinitions.0" objectVar="//@rules.0/@nodes.2">
+        <attribute href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//InPort/isSync"/>
+      </parameterValues>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.2/@parameterDefinitions.1" objectVar="//@rules.0/@nodes.4">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//InPort/isSynchronized"/>
+      </parameterValues>
+    </attributeConditionLibrary>
+  </rules>
+  <rules name="InP2InPBWD">
+    <nodes name="vnf" outgoingEdges="//@rules.1/@edges.0" incomingCorrsSource="//@rules.1/@nodes.5">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//VNF"/>
+    </nodes>
+    <nodes name="bwdPorts" incomingEdges="//@rules.1/@edges.0" outgoingEdges="//@rules.1/@edges.1">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//BWDPort"/>
+    </nodes>
+    <nodes name="inPort" bindingType="CREATE" incomingEdges="//@rules.1/@edges.1" incomingCorrsSource="//@rules.1/@nodes.6">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//InPort"/>
+    </nodes>
+    <nodes name="trgVnf" domainType="TRG" outgoingEdges="//@rules.1/@edges.2" incomingCorrsTarget="//@rules.1/@nodes.5">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//VNF_component"/>
+    </nodes>
+    <nodes name="trgInPortBWD" domainType="TRG" bindingType="CREATE" incomingEdges="//@rules.1/@edges.2" incomingCorrsTarget="//@rules.1/@nodes.6">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//InPortBWD"/>
+    </nodes>
+    <nodes xsi:type="language:TGGRuleCorr" name="vnf2vnf" domainType="CORR" source="//@rules.1/@nodes.0" target="//@rules.1/@nodes.3">
+      <type href="platform:/resource/Transform_Xtext_VNF/model/Transform_Xtext_VNF.ecore#//VnfToVnf"/>
+    </nodes>
+    <nodes xsi:type="language:TGGRuleCorr" name="inport2inport" domainType="CORR" bindingType="CREATE" source="//@rules.1/@nodes.2" target="//@rules.1/@nodes.4">
+      <type href="platform:/resource/Transform_Xtext_VNF/model/Transform_Xtext_VNF.ecore#//InPortToInPort"/>
+    </nodes>
+    <edges name="vnf__bwdPorts__bwdPorts_eMoflonEdge" srcNode="//@rules.1/@nodes.0" trgNode="//@rules.1/@nodes.1">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//VNF/bwdPorts"/>
+    </edges>
+    <edges name="bwdPorts__inPort__inPort_eMoflonEdge" bindingType="CREATE" srcNode="//@rules.1/@nodes.1" trgNode="//@rules.1/@nodes.2">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//BWDPort/inPort"/>
+    </edges>
+    <edges name="trgVnf__inport__trgInPortBWD_eMoflonEdge" domainType="TRG" bindingType="CREATE" srcNode="//@rules.1/@nodes.3" trgNode="//@rules.1/@nodes.4">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//VNF_component/inport"/>
+    </edges>
+    <attributeConditionLibrary>
+      <tggAttributeConstraints definition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1" parameters="//@rules.1/@attributeConditionLibrary/@parameterValues.0 //@rules.1/@attributeConditionLibrary/@parameterValues.1"/>
+      <tggAttributeConstraints definition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.2" parameters="//@rules.1/@attributeConditionLibrary/@parameterValues.2 //@rules.1/@attributeConditionLibrary/@parameterValues.3"/>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.0" objectVar="//@rules.1/@nodes.2">
+        <attribute href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//InPort/name"/>
+      </parameterValues>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.1" objectVar="//@rules.1/@nodes.4">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Port/name"/>
+      </parameterValues>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.2/@parameterDefinitions.0" objectVar="//@rules.1/@nodes.2">
+        <attribute href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//InPort/isSync"/>
+      </parameterValues>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.2/@parameterDefinitions.1" objectVar="//@rules.1/@nodes.4">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//InPort/isSynchronized"/>
+      </parameterValues>
+    </attributeConditionLibrary>
+  </rules>
+  <rules name="OutP2OutPFWD">
+    <nodes name="vnf" outgoingEdges="//@rules.2/@edges.0" incomingCorrsSource="//@rules.2/@nodes.5">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//VNF"/>
+    </nodes>
+    <nodes name="fwdPorts" incomingEdges="//@rules.2/@edges.0" outgoingEdges="//@rules.2/@edges.1">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//FWDPort"/>
+    </nodes>
+    <nodes name="outPort" bindingType="CREATE" incomingEdges="//@rules.2/@edges.1" incomingCorrsSource="//@rules.2/@nodes.6">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//OutPort"/>
+    </nodes>
+    <nodes name="trgVnf" domainType="TRG" outgoingEdges="//@rules.2/@edges.2" incomingCorrsTarget="//@rules.2/@nodes.5">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//VNF_component"/>
+    </nodes>
+    <nodes name="trgOutPortFWD" domainType="TRG" bindingType="CREATE" incomingEdges="//@rules.2/@edges.2" incomingCorrsTarget="//@rules.2/@nodes.6">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//OutPortFWD"/>
+    </nodes>
+    <nodes xsi:type="language:TGGRuleCorr" name="vnf2vnf" domainType="CORR" source="//@rules.2/@nodes.0" target="//@rules.2/@nodes.3">
+      <type href="platform:/resource/Transform_Xtext_VNF/model/Transform_Xtext_VNF.ecore#//VnfToVnf"/>
+    </nodes>
+    <nodes xsi:type="language:TGGRuleCorr" name="outport2outport" domainType="CORR" bindingType="CREATE" source="//@rules.2/@nodes.2" target="//@rules.2/@nodes.4">
+      <type href="platform:/resource/Transform_Xtext_VNF/model/Transform_Xtext_VNF.ecore#//OutPortToOutPort"/>
+    </nodes>
+    <edges name="vnf__fwdPorts__fwdPorts_eMoflonEdge" srcNode="//@rules.2/@nodes.0" trgNode="//@rules.2/@nodes.1">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//VNF/fwdPorts"/>
+    </edges>
+    <edges name="fwdPorts__outPort__outPort_eMoflonEdge" bindingType="CREATE" srcNode="//@rules.2/@nodes.1" trgNode="//@rules.2/@nodes.2">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//FWDPort/outPort"/>
+    </edges>
+    <edges name="trgVnf__outport__trgOutPortFWD_eMoflonEdge" domainType="TRG" bindingType="CREATE" srcNode="//@rules.2/@nodes.3" trgNode="//@rules.2/@nodes.4">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//VNF_component/outport"/>
+    </edges>
+    <attributeConditionLibrary>
+      <tggAttributeConstraints definition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1" parameters="//@rules.2/@attributeConditionLibrary/@parameterValues.0 //@rules.2/@attributeConditionLibrary/@parameterValues.1"/>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.0" objectVar="//@rules.2/@nodes.2">
+        <attribute href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//OutPort/name"/>
+      </parameterValues>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.1" objectVar="//@rules.2/@nodes.4">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Port/name"/>
+      </parameterValues>
+    </attributeConditionLibrary>
+  </rules>
+  <rules name="OutP2OutPBWD">
+    <nodes name="vnf" outgoingEdges="//@rules.3/@edges.0" incomingCorrsSource="//@rules.3/@nodes.5">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//VNF"/>
+    </nodes>
+    <nodes name="bwdPorts" incomingEdges="//@rules.3/@edges.0" outgoingEdges="//@rules.3/@edges.1">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//BWDPort"/>
+    </nodes>
+    <nodes name="outPort" bindingType="CREATE" incomingEdges="//@rules.3/@edges.1" incomingCorrsSource="//@rules.3/@nodes.6">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//OutPort"/>
+    </nodes>
+    <nodes name="trgVnf" domainType="TRG" outgoingEdges="//@rules.3/@edges.2" incomingCorrsTarget="//@rules.3/@nodes.5">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//VNF_component"/>
+    </nodes>
+    <nodes name="trgOutPortBWD" domainType="TRG" bindingType="CREATE" incomingEdges="//@rules.3/@edges.2" incomingCorrsTarget="//@rules.3/@nodes.6">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//OutPortBWD"/>
+    </nodes>
+    <nodes xsi:type="language:TGGRuleCorr" name="vnf2vnf" domainType="CORR" source="//@rules.3/@nodes.0" target="//@rules.3/@nodes.3">
+      <type href="platform:/resource/Transform_Xtext_VNF/model/Transform_Xtext_VNF.ecore#//VnfToVnf"/>
+    </nodes>
+    <nodes xsi:type="language:TGGRuleCorr" name="outport2outport" domainType="CORR" bindingType="CREATE" source="//@rules.3/@nodes.2" target="//@rules.3/@nodes.4">
+      <type href="platform:/resource/Transform_Xtext_VNF/model/Transform_Xtext_VNF.ecore#//OutPortToOutPort"/>
+    </nodes>
+    <edges name="vnf__bwdPorts__bwdPorts_eMoflonEdge" srcNode="//@rules.3/@nodes.0" trgNode="//@rules.3/@nodes.1">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//VNF/bwdPorts"/>
+    </edges>
+    <edges name="bwdPorts__outPort__outPort_eMoflonEdge" bindingType="CREATE" srcNode="//@rules.3/@nodes.1" trgNode="//@rules.3/@nodes.2">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//BWDPort/outPort"/>
+    </edges>
+    <edges name="trgVnf__outport__trgOutPortBWD_eMoflonEdge" domainType="TRG" bindingType="CREATE" srcNode="//@rules.3/@nodes.3" trgNode="//@rules.3/@nodes.4">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//VNF_component/outport"/>
+    </edges>
+    <attributeConditionLibrary>
+      <tggAttributeConstraints definition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1" parameters="//@rules.3/@attributeConditionLibrary/@parameterValues.0 //@rules.3/@attributeConditionLibrary/@parameterValues.1"/>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.0" objectVar="//@rules.3/@nodes.2">
+        <attribute href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//OutPort/name"/>
+      </parameterValues>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.1" objectVar="//@rules.3/@nodes.4">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Port/name"/>
+      </parameterValues>
+    </attributeConditionLibrary>
+  </rules>
+  <rules name="Service_to_Service">
+    <nodes name="service" bindingType="CREATE" incomingCorrsSource="//@rules.4/@nodes.2">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//Service"/>
+    </nodes>
+    <nodes name="trgService" domainType="TRG" bindingType="CREATE" incomingCorrsTarget="//@rules.4/@nodes.2">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Service"/>
+    </nodes>
+    <nodes xsi:type="language:TGGRuleCorr" name="service2service" domainType="CORR" bindingType="CREATE" source="//@rules.4/@nodes.0" target="//@rules.4/@nodes.1">
+      <type href="platform:/resource/Transform_Xtext_VNF/model/Transform_Xtext_VNF.ecore#//ServiceToService"/>
+    </nodes>
+    <attributeConditionLibrary>
+      <tggAttributeConstraints definition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1" parameters="//@rules.4/@attributeConditionLibrary/@parameterValues.0 //@rules.4/@attributeConditionLibrary/@parameterValues.1"/>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.0" objectVar="//@rules.4/@nodes.0">
+        <attribute href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//Service/serviceNname"/>
+      </parameterValues>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.1" objectVar="//@rules.4/@nodes.1">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Service/name"/>
+      </parameterValues>
+    </attributeConditionLibrary>
+  </rules>
+  <rules name="SourceInPorts">
+    <nodes name="source" outgoingEdges="//@rules.5/@edges.0" incomingCorrsSource="//@rules.5/@nodes.4">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//Source"/>
+    </nodes>
+    <nodes name="inPort" bindingType="CREATE" incomingEdges="//@rules.5/@edges.0" incomingCorrsSource="//@rules.5/@nodes.5">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//InPort"/>
+    </nodes>
+    <nodes name="trgSource" domainType="TRG" outgoingEdges="//@rules.5/@edges.1" incomingCorrsTarget="//@rules.5/@nodes.4">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Source"/>
+    </nodes>
+    <nodes name="trgInPort" domainType="TRG" bindingType="CREATE" incomingEdges="//@rules.5/@edges.1" incomingCorrsTarget="//@rules.5/@nodes.5">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//InPortBWD"/>
+    </nodes>
+    <nodes xsi:type="language:TGGRuleCorr" name="s2s" domainType="CORR" source="//@rules.5/@nodes.0" target="//@rules.5/@nodes.2">
+      <type href="platform:/resource/Transform_Xtext_VNF/model/Transform_Xtext_VNF.ecore#//SourceToSource"/>
+    </nodes>
+    <nodes xsi:type="language:TGGRuleCorr" name="inP2inP" domainType="CORR" bindingType="CREATE" source="//@rules.5/@nodes.1" target="//@rules.5/@nodes.3">
+      <type href="platform:/resource/Transform_Xtext_VNF/model/Transform_Xtext_VNF.ecore#//InPortToInPort"/>
+    </nodes>
+    <edges name="source__inPort__inPort_eMoflonEdge" bindingType="CREATE" srcNode="//@rules.5/@nodes.0" trgNode="//@rules.5/@nodes.1">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//Source/inPort"/>
+    </edges>
+    <edges name="trgSource__inport__trgInPort_eMoflonEdge" domainType="TRG" bindingType="CREATE" srcNode="//@rules.5/@nodes.2" trgNode="//@rules.5/@nodes.3">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Source/inport"/>
+    </edges>
+    <attributeConditionLibrary>
+      <tggAttributeConstraints definition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1" parameters="//@rules.5/@attributeConditionLibrary/@parameterValues.0 //@rules.5/@attributeConditionLibrary/@parameterValues.1"/>
+      <tggAttributeConstraints definition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.2" parameters="//@rules.5/@attributeConditionLibrary/@parameterValues.2 //@rules.5/@attributeConditionLibrary/@parameterValues.3"/>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.0" objectVar="//@rules.5/@nodes.1">
+        <attribute href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//InPort/name"/>
+      </parameterValues>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.1" objectVar="//@rules.5/@nodes.3">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Port/name"/>
+      </parameterValues>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.2/@parameterDefinitions.0" objectVar="//@rules.5/@nodes.1">
+        <attribute href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//InPort/isSync"/>
+      </parameterValues>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.2/@parameterDefinitions.1" objectVar="//@rules.5/@nodes.3">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//InPort/isSynchronized"/>
+      </parameterValues>
+    </attributeConditionLibrary>
+  </rules>
+  <rules name="SourceOutPorts">
+    <nodes name="source" outgoingEdges="//@rules.6/@edges.0" incomingCorrsSource="//@rules.6/@nodes.4">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//Source"/>
+    </nodes>
+    <nodes name="outPort" bindingType="CREATE" incomingEdges="//@rules.6/@edges.0" incomingCorrsSource="//@rules.6/@nodes.5">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//OutPort"/>
+    </nodes>
+    <nodes name="trgSource" domainType="TRG" outgoingEdges="//@rules.6/@edges.1" incomingCorrsTarget="//@rules.6/@nodes.4">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Source"/>
+    </nodes>
+    <nodes name="trgOutPort" domainType="TRG" bindingType="CREATE" incomingEdges="//@rules.6/@edges.1" incomingCorrsTarget="//@rules.6/@nodes.5">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//OutPortFWD"/>
+    </nodes>
+    <nodes xsi:type="language:TGGRuleCorr" name="s2s" domainType="CORR" source="//@rules.6/@nodes.0" target="//@rules.6/@nodes.2">
+      <type href="platform:/resource/Transform_Xtext_VNF/model/Transform_Xtext_VNF.ecore#//SourceToSource"/>
+    </nodes>
+    <nodes xsi:type="language:TGGRuleCorr" name="outP2outP" domainType="CORR" bindingType="CREATE" source="//@rules.6/@nodes.1" target="//@rules.6/@nodes.3">
+      <type href="platform:/resource/Transform_Xtext_VNF/model/Transform_Xtext_VNF.ecore#//OutPortToOutPort"/>
+    </nodes>
+    <edges name="source__outPort__outPort_eMoflonEdge" bindingType="CREATE" srcNode="//@rules.6/@nodes.0" trgNode="//@rules.6/@nodes.1">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//Source/outPort"/>
+    </edges>
+    <edges name="trgSource__outport__trgOutPort_eMoflonEdge" domainType="TRG" bindingType="CREATE" srcNode="//@rules.6/@nodes.2" trgNode="//@rules.6/@nodes.3">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Source/outport"/>
+    </edges>
+    <attributeConditionLibrary>
+      <tggAttributeConstraints definition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1" parameters="//@rules.6/@attributeConditionLibrary/@parameterValues.0 //@rules.6/@attributeConditionLibrary/@parameterValues.1"/>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.0" objectVar="//@rules.6/@nodes.1">
+        <attribute href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//OutPort/name"/>
+      </parameterValues>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.1" objectVar="//@rules.6/@nodes.3">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Port/name"/>
+      </parameterValues>
+    </attributeConditionLibrary>
+  </rules>
+  <rules name="Source_to_Source">
+    <nodes name="service" outgoingEdges="//@rules.7/@edges.0" incomingCorrsSource="//@rules.7/@nodes.4">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//Service"/>
+    </nodes>
+    <nodes name="source" bindingType="CREATE" incomingEdges="//@rules.7/@edges.0" incomingCorrsSource="//@rules.7/@nodes.5">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//Source"/>
+    </nodes>
+    <nodes name="trgService" domainType="TRG" outgoingEdges="//@rules.7/@edges.1" incomingCorrsTarget="//@rules.7/@nodes.4">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Service"/>
+    </nodes>
+    <nodes name="trgSource" domainType="TRG" bindingType="CREATE" incomingEdges="//@rules.7/@edges.1" incomingCorrsTarget="//@rules.7/@nodes.5">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Source"/>
+    </nodes>
+    <nodes xsi:type="language:TGGRuleCorr" name="service2Service" domainType="CORR" source="//@rules.7/@nodes.0" target="//@rules.7/@nodes.2">
+      <type href="platform:/resource/Transform_Xtext_VNF/model/Transform_Xtext_VNF.ecore#//ServiceToService"/>
+    </nodes>
+    <nodes xsi:type="language:TGGRuleCorr" name="s2s" domainType="CORR" bindingType="CREATE" source="//@rules.7/@nodes.1" target="//@rules.7/@nodes.3">
+      <type href="platform:/resource/Transform_Xtext_VNF/model/Transform_Xtext_VNF.ecore#//SourceToSource"/>
+    </nodes>
+    <edges name="service__sources__source_eMoflonEdge" bindingType="CREATE" srcNode="//@rules.7/@nodes.0" trgNode="//@rules.7/@nodes.1">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//Service/sources"/>
+    </edges>
+    <edges name="trgService__sources__trgSource_eMoflonEdge" domainType="TRG" bindingType="CREATE" srcNode="//@rules.7/@nodes.2" trgNode="//@rules.7/@nodes.3">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Service/sources"/>
+    </edges>
+    <attributeConditionLibrary>
+      <tggAttributeConstraints definition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1" parameters="//@rules.7/@attributeConditionLibrary/@parameterValues.0 //@rules.7/@attributeConditionLibrary/@parameterValues.1"/>
+      <tggAttributeConstraints definition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1" parameters="//@rules.7/@attributeConditionLibrary/@parameterValues.2 //@rules.7/@attributeConditionLibrary/@parameterValues.3"/>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.0" objectVar="//@rules.7/@nodes.1">
+        <attribute href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//Source/sourceName"/>
+      </parameterValues>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.1" objectVar="//@rules.7/@nodes.3">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Source/name"/>
+      </parameterValues>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.0" objectVar="//@rules.7/@nodes.1">
+        <attribute href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//Source/generationPeriod"/>
+      </parameterValues>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.1" objectVar="//@rules.7/@nodes.3">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Source/generationPeriod"/>
+      </parameterValues>
+    </attributeConditionLibrary>
+  </rules>
+  <rules name="VLink_to_VLink">
+    <nodes name="service" outgoingEdges="//@rules.8/@edges.0" incomingCorrsSource="//@rules.8/@nodes.8">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//Service"/>
+    </nodes>
+    <nodes name="inPort" incomingEdges="//@rules.8/@edges.2" incomingCorrsSource="//@rules.8/@nodes.9">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//InPort"/>
+    </nodes>
+    <nodes name="outPort" incomingEdges="//@rules.8/@edges.1" incomingCorrsSource="//@rules.8/@nodes.10">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//OutPort"/>
+    </nodes>
+    <nodes name="VLink" bindingType="CREATE" incomingEdges="//@rules.8/@edges.0" outgoingEdges="//@rules.8/@edges.1 //@rules.8/@edges.2" incomingCorrsSource="//@rules.8/@nodes.11">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//VLink"/>
+    </nodes>
+    <nodes name="trgService" domainType="TRG" outgoingEdges="//@rules.8/@edges.3" incomingCorrsTarget="//@rules.8/@nodes.8">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Service"/>
+    </nodes>
+    <nodes name="trgInPort" domainType="TRG" incomingEdges="//@rules.8/@edges.7" outgoingEdges="//@rules.8/@edges.4" incomingCorrsTarget="//@rules.8/@nodes.9">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//InPort"/>
+    </nodes>
+    <nodes name="trgOutPort" domainType="TRG" incomingEdges="//@rules.8/@edges.6" outgoingEdges="//@rules.8/@edges.5" incomingCorrsTarget="//@rules.8/@nodes.10">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//OutPort"/>
+    </nodes>
+    <nodes name="trgVLink" domainType="TRG" bindingType="CREATE" incomingEdges="//@rules.8/@edges.3 //@rules.8/@edges.4 //@rules.8/@edges.5" outgoingEdges="//@rules.8/@edges.6 //@rules.8/@edges.7" incomingCorrsTarget="//@rules.8/@nodes.11">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Vlink"/>
+    </nodes>
+    <nodes xsi:type="language:TGGRuleCorr" name="service2service" domainType="CORR" source="//@rules.8/@nodes.0" target="//@rules.8/@nodes.4">
+      <type href="platform:/resource/Transform_Xtext_VNF/model/Transform_Xtext_VNF.ecore#//ServiceToService"/>
+    </nodes>
+    <nodes xsi:type="language:TGGRuleCorr" name="inPort2inPort" domainType="CORR" source="//@rules.8/@nodes.1" target="//@rules.8/@nodes.5">
+      <type href="platform:/resource/Transform_Xtext_VNF/model/Transform_Xtext_VNF.ecore#//InPortToInPort"/>
+    </nodes>
+    <nodes xsi:type="language:TGGRuleCorr" name="outPort2outPort" domainType="CORR" source="//@rules.8/@nodes.2" target="//@rules.8/@nodes.6">
+      <type href="platform:/resource/Transform_Xtext_VNF/model/Transform_Xtext_VNF.ecore#//OutPortToOutPort"/>
+    </nodes>
+    <nodes xsi:type="language:TGGRuleCorr" name="vlink2vlink" domainType="CORR" bindingType="CREATE" source="//@rules.8/@nodes.3" target="//@rules.8/@nodes.7">
+      <type href="platform:/resource/Transform_Xtext_VNF/model/Transform_Xtext_VNF.ecore#//VLinkToVLink"/>
+    </nodes>
+    <edges name="service__connectors__VLink_eMoflonEdge" bindingType="CREATE" srcNode="//@rules.8/@nodes.0" trgNode="//@rules.8/@nodes.3">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//Service/connectors"/>
+    </edges>
+    <edges name="VLink__source__outPort_eMoflonEdge" bindingType="CREATE" srcNode="//@rules.8/@nodes.3" trgNode="//@rules.8/@nodes.2">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//VLink/source"/>
+    </edges>
+    <edges name="VLink__target__inPort_eMoflonEdge" bindingType="CREATE" srcNode="//@rules.8/@nodes.3" trgNode="//@rules.8/@nodes.1">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//VLink/target"/>
+    </edges>
+    <edges name="trgService__connectors__trgVLink_eMoflonEdge" domainType="TRG" bindingType="CREATE" srcNode="//@rules.8/@nodes.4" trgNode="//@rules.8/@nodes.7">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Service/connectors"/>
+    </edges>
+    <edges name="trgInPort__source__trgVLink_eMoflonEdge" domainType="TRG" bindingType="CREATE" srcNode="//@rules.8/@nodes.5" trgNode="//@rules.8/@nodes.7">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//InPort/source"/>
+    </edges>
+    <edges name="trgOutPort__target__trgVLink_eMoflonEdge" domainType="TRG" bindingType="CREATE" srcNode="//@rules.8/@nodes.6" trgNode="//@rules.8/@nodes.7">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//OutPort/target"/>
+    </edges>
+    <edges name="trgVLink__source__trgOutPort_eMoflonEdge" domainType="TRG" bindingType="CREATE" srcNode="//@rules.8/@nodes.7" trgNode="//@rules.8/@nodes.6">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Vlink/source"/>
+    </edges>
+    <edges name="trgVLink__target__trgInPort_eMoflonEdge" domainType="TRG" bindingType="CREATE" srcNode="//@rules.8/@nodes.7" trgNode="//@rules.8/@nodes.5">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Vlink/target"/>
+    </edges>
+    <attributeConditionLibrary>
+      <tggAttributeConstraints definition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1" parameters="//@rules.8/@attributeConditionLibrary/@parameterValues.0 //@rules.8/@attributeConditionLibrary/@parameterValues.1"/>
+      <tggAttributeConstraints definition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1" parameters="//@rules.8/@attributeConditionLibrary/@parameterValues.2 //@rules.8/@attributeConditionLibrary/@parameterValues.3"/>
+      <tggAttributeConstraints definition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1" parameters="//@rules.8/@attributeConditionLibrary/@parameterValues.4 //@rules.8/@attributeConditionLibrary/@parameterValues.5"/>
+      <tggAttributeConstraints definition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.0" parameters="//@rules.8/@attributeConditionLibrary/@parameterValues.6"/>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.0" objectVar="//@rules.8/@nodes.3">
+        <attribute href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//VLink/vLinkName"/>
+      </parameterValues>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.1" objectVar="//@rules.8/@nodes.7">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Vlink/name"/>
+      </parameterValues>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.0" objectVar="//@rules.8/@nodes.3">
+        <attribute href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//VLink/probability"/>
+      </parameterValues>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.1" objectVar="//@rules.8/@nodes.7">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Vlink/probability"/>
+      </parameterValues>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.0" objectVar="//@rules.8/@nodes.3">
+        <attribute href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//VLink/data_manipulation"/>
+      </parameterValues>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.1" objectVar="//@rules.8/@nodes.7">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//Vlink/dataManipulation"/>
+      </parameterValues>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.0/@parameterDefinitions.0" objectVar="//@rules.8/@nodes.5">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//InPort/ingoingLinks"/>
+      </parameterValues>
+    </attributeConditionLibrary>
+  </rules>
+  <rules name="VNF_to_VNF">
+    <nodes name="service" outgoingEdges="//@rules.9/@edges.0" incomingCorrsSource="//@rules.9/@nodes.6">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//Service"/>
+    </nodes>
+    <nodes name="vnf" bindingType="CREATE" incomingEdges="//@rules.9/@edges.0" outgoingEdges="//@rules.9/@edges.1 //@rules.9/@edges.2" incomingCorrsSource="//@rules.9/@nodes.7">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//VNF"/>
+    </nodes>
+    <nodes name="fwdPorts" bindingType="CREATE" incomingEdges="//@rules.9/@edges.1">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//FWDPort"/>
+    </nodes>
+    <nodes name="bwdPorts" bindingType="CREATE" incomingEdges="//@rules.9/@edges.2">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//BWDPort"/>
+    </nodes>
+    <nodes name="trgService" domainType="TRG" outgoingEdges="//@rules.9/@edges.3" incomingCorrsTarget="//@rules.9/@nodes.6">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Service"/>
+    </nodes>
+    <nodes name="trgVnf" domainType="TRG" bindingType="CREATE" incomingEdges="//@rules.9/@edges.3" incomingCorrsTarget="//@rules.9/@nodes.7">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//VNF_component"/>
+    </nodes>
+    <nodes xsi:type="language:TGGRuleCorr" name="service2service" domainType="CORR" source="//@rules.9/@nodes.0" target="//@rules.9/@nodes.4">
+      <type href="platform:/resource/Transform_Xtext_VNF/model/Transform_Xtext_VNF.ecore#//ServiceToService"/>
+    </nodes>
+    <nodes xsi:type="language:TGGRuleCorr" name="vnf2vnf" domainType="CORR" bindingType="CREATE" source="//@rules.9/@nodes.1" target="//@rules.9/@nodes.5">
+      <type href="platform:/resource/Transform_Xtext_VNF/model/Transform_Xtext_VNF.ecore#//VnfToVnf"/>
+    </nodes>
+    <edges name="service__components__vnf_eMoflonEdge" bindingType="CREATE" srcNode="//@rules.9/@nodes.0" trgNode="//@rules.9/@nodes.1">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//Service/components"/>
+    </edges>
+    <edges name="vnf__fwdPorts__fwdPorts_eMoflonEdge" bindingType="CREATE" srcNode="//@rules.9/@nodes.1" trgNode="//@rules.9/@nodes.2">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//VNF/fwdPorts"/>
+    </edges>
+    <edges name="vnf__bwdPorts__bwdPorts_eMoflonEdge" bindingType="CREATE" srcNode="//@rules.9/@nodes.1" trgNode="//@rules.9/@nodes.3">
+      <type href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//VNF/bwdPorts"/>
+    </edges>
+    <edges name="trgService__components__trgVnf_eMoflonEdge" domainType="TRG" bindingType="CREATE" srcNode="//@rules.9/@nodes.4" trgNode="//@rules.9/@nodes.5">
+      <type href="platform:/resource/VNF/model/VNF.ecore#//Service/components"/>
+    </edges>
+    <attributeConditionLibrary>
+      <tggAttributeConstraints definition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1" parameters="//@rules.9/@attributeConditionLibrary/@parameterValues.0 //@rules.9/@attributeConditionLibrary/@parameterValues.1"/>
+      <tggAttributeConstraints definition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1" parameters="//@rules.9/@attributeConditionLibrary/@parameterValues.2 //@rules.9/@attributeConditionLibrary/@parameterValues.3"/>
+      <tggAttributeConstraints definition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1" parameters="//@rules.9/@attributeConditionLibrary/@parameterValues.4 //@rules.9/@attributeConditionLibrary/@parameterValues.5"/>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.0" objectVar="//@rules.9/@nodes.1">
+        <attribute href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//VNF/vnfName"/>
+      </parameterValues>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.1" objectVar="//@rules.9/@nodes.5">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//VNF_component/name"/>
+      </parameterValues>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.0" objectVar="//@rules.9/@nodes.1">
+        <attribute href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//VNF/resources"/>
+      </parameterValues>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.1" objectVar="//@rules.9/@nodes.5">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//VNF_component/resources"/>
+      </parameterValues>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.0" objectVar="//@rules.9/@nodes.1">
+        <attribute href="platform:/resource/vnf_to_qpn_xtext/model/generated/Vnf.ecore#//VNF/processingTime"/>
+      </parameterValues>
+      <parameterValues xsi:type="language:TGGAttributeExpression" parameterDefinition="//@attributeConstraintDefinitionLibrary/@tggAttributeConstraintDefinitions.1/@parameterDefinitions.1" objectVar="//@rules.9/@nodes.5">
+        <attribute href="platform:/resource/VNF/model/VNF.ecore#//VNF_component/processingTime"/>
+      </parameterValues>
+    </attributeConditionLibrary>
+  </rules>
+  <attributeConstraintDefinitionLibrary>
+    <tggAttributeConstraintDefinitions name="increase">
+      <parameterDefinitions name="param1">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      </parameterDefinitions>
+      <syncAdornments>
+        <value>B</value>
+      </syncAdornments>
+      <syncAdornments>
+        <value>F</value>
+      </syncAdornments>
+      <genAdornments>
+        <value>B</value>
+      </genAdornments>
+      <genAdornments>
+        <value>F</value>
+      </genAdornments>
+    </tggAttributeConstraintDefinitions>
+    <tggAttributeConstraintDefinitions name="eq_string" userDefined="false">
+      <parameterDefinitions name="a">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </parameterDefinitions>
+      <parameterDefinitions name="b">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </parameterDefinitions>
+      <syncAdornments>
+        <value>B</value>
+        <value>B</value>
+      </syncAdornments>
+      <syncAdornments>
+        <value>B</value>
+        <value>F</value>
+      </syncAdornments>
+      <syncAdornments>
+        <value>F</value>
+        <value>B</value>
+      </syncAdornments>
+      <genAdornments>
+        <value>B</value>
+        <value>B</value>
+      </genAdornments>
+      <genAdornments>
+        <value>B</value>
+        <value>F</value>
+      </genAdornments>
+      <genAdornments>
+        <value>F</value>
+        <value>B</value>
+      </genAdornments>
+      <genAdornments>
+        <value>F</value>
+        <value>F</value>
+      </genAdornments>
+    </tggAttributeConstraintDefinitions>
+    <tggAttributeConstraintDefinitions name="eq_boolean" userDefined="false">
+      <parameterDefinitions name="a">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      </parameterDefinitions>
+      <parameterDefinitions name="b">
+        <type href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      </parameterDefinitions>
+      <syncAdornments>
+        <value>B</value>
+        <value>B</value>
+      </syncAdornments>
+      <syncAdornments>
+        <value>B</value>
+        <value>F</value>
+      </syncAdornments>
+      <syncAdornments>
+        <value>F</value>
+        <value>B</value>
+      </syncAdornments>
+      <genAdornments>
+        <value>B</value>
+        <value>B</value>
+      </genAdornments>
+      <genAdornments>
+        <value>B</value>
+        <value>F</value>
+      </genAdornments>
+      <genAdornments>
+        <value>F</value>
+        <value>B</value>
+      </genAdornments>
+      <genAdornments>
+        <value>F</value>
+        <value>F</value>
+      </genAdornments>
+    </tggAttributeConstraintDefinitions>
+  </attributeConstraintDefinitionLibrary>
+</language:TGG>

@@ -1,0 +1,42 @@
+#using Transform_Xtext_VNF.*
+#using AttrCondDefLibrary.*
+
+#rule Source_to_Source #with Transform_Xtext_VNF
+
+#source { 
+	service: Service {
+		++ -sources->source
+	}
+	
+	++ source: vnf.Source {
+		
+	}
+
+}
+
+#target {
+	trgService: VNF.Service {
+		++ -sources->trgSource
+	}
+	
+	++ trgSource: VNF.Source {
+		
+	}
+}
+
+#correspondence {
+	service2Service: ServiceToService {
+		#src->service
+		#trg->trgService
+	}
+	
+	++ s2s: SourceToSource {
+		#src->source
+		#trg->trgSource
+	}
+}
+
+#attributeConditions {
+	eq_string(source.sourceName, trgSource.name)
+	eq_string(source.generationPeriod, trgSource.generationPeriod)
+}

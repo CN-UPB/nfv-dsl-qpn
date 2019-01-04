@@ -1,0 +1,185 @@
+#using Transform_VNF_QPN.*
+#using AttrCondDefLibrary.*
+
+#rule FWDInPortToSubSubGroupSource #with Transform_VNF_QPN
+
+#source { 
+	service : Service {
+		-sources->source		
+	}
+	source:Source{
+		++-inport->inPortFWD
+	}
+	
+	++inPortFWD :InPortFWD{
+		
+	}
+	
+		}
+
+
+#target {
+	
+	petriNet: PetriNet {
+		-groups-> group
+		//++-arcs->arcFWD
+		//++-arcs->helpArcFWD
+	}
+	
+	group: Group {
+		-forward->subGroupFWD
+		
+	}
+	
+	subGroupFWD :SubGroup {
+		-function-> functionFWD
+		++-in->InPortFWDGroup
+	}
+	
+	
+	
+	functionFWD : SubSubGroup {
+		-places->placeFWD
+	}
+	placeFWD :Place {
+		
+	}
+		
+	
+	
+	++ InPortFWDGroup :SubSubGroup {
+		++-arcs->arcFWD
+		//++-places->placeFWD
+		++-transitions->transitionFWD
+	}
+	
+	++ transitionFWD:ImmediateTransition {
+		
+	}
+	
+	++arcFWD:Arc {
+		++-from->transitionFWD
+		++-to->placeFWD
+	}
+	
+	
+	
+
+	
+	
+}
+
+#correspondence {
+	serviceToPetriNet :ServiceToPetriNet {
+		#src->service
+		#trg->petriNet
+	}
+	
+	vnfToGroup:SourceToGroup {
+		#src->source
+		#trg->group
+	}
+	
+	++inPortToSubSubGroup :InPortToSubSubGroup {
+		#src->inPortFWD
+		#trg->InPortFWDGroup
+	}
+	
+	
+}
+
+#attributeConditions {
+	eq_string(inPortFWD.name,InPortFWDGroup.name)
+}
+
+
+#rule BWDInPortToSubSubGroupSource #with Transform_VNF_QPN
+
+#source { 
+	service: Service{
+		-sources->source		
+	}
+	source:Source{
+		++-inport->inPortBWD
+	}
+	
+	++inPortBWD :InPortBWD{
+		
+	}
+	
+		}
+
+
+#target {
+	
+	petriNet: PetriNet {
+		-groups-> group
+		//++-arcs->arcBWD
+		//++-arcs->helpArcBWD
+	}
+	
+	group: Group {
+		-backward->subGroupBWD
+		
+	}
+	
+	subGroupBWD :SubGroup {
+		-function-> functionBWD
+		++-in->InPortBWDGroup
+	}
+	
+	
+	
+	functionBWD : SubSubGroup {
+		-places->placeBWD
+	}
+	placeBWD :Place {
+		
+	}
+		
+	
+	++ InPortBWDGroup :SubSubGroup {
+		++-arcs->arcBWD
+		++-transitions->transitionBWD
+	}
+	
+	++ transitionBWD:ImmediateTransition {
+		
+	}
+	
+	++arcBWD:Arc {
+		++-from->transitionBWD
+		++-to->placeBWD
+	}
+	
+	
+	
+	
+	
+}
+
+#correspondence {
+	serviceToPetriNet :ServiceToPetriNet {
+		#src->service
+		#trg->petriNet
+	}
+	
+	vnfToGroup:SourceToGroup {
+		#src->source
+		#trg->group
+	}
+	
+	++inPortToSubSubGroup :InPortToSubSubGroup {
+		#src->inPortBWD
+		#trg->InPortBWDGroup
+	}
+	
+	
+}
+
+#attributeConditions {
+	
+	eq_string(inPortBWD.name,InPortBWDGroup.name)
+	
+}
+

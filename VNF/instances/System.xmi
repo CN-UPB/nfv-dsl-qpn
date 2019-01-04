@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VNF_to_QPN:System
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:VNF_to_QPN="platform:/resource/VNF_to_QPN/model/VNF_to_QPN.ecore">
+  <components
+      name="VNF1"/>
+  <components
+      name="VNF2"/>
+</VNF_to_QPN:System>

@@ -1,0 +1,169 @@
+#using Transform_VNF_QPN.*
+#using AttrCondDefLibrary.*
+
+#rule FWDOutPortToSubSubGroupSource #with Transform_VNF_QPN
+
+#source { 
+	service:Service {
+		-sources->source	
+	}
+	
+	
+	source:Source {
+		++-outport->outPortFWD
+	}
+	
+	++ outPortFWD : OutPortFWD {
+		
+	}
+	
+}
+
+#target {
+	
+	petriNet : PetriNet {
+		-groups->group
+		//++-arcs->arcFWD
+	}
+	
+	group: Group {
+		-forward->subGroupFWD
+		
+	}
+	
+	subGroupFWD :SubGroup {
+		-function-> functionFWD
+		++-out-> outPortFWDGroup
+	}
+	
+	
+	
+	functionFWD : SubSubGroup {
+		-transitions->transitionFWD
+	}
+	transitionFWD :TimedTransition {
+		
+	}
+	
+	++outPortFWDGroup : SubSubGroup {
+		++-places->placeFWD
+		++-arcs->arcFWD}
+		
+	++placeFWD :Place {
+		
+	} 
+	
+	++arcFWD : Arc {
+		++-from->transitionFWD
+		++-to->placeFWD
+	}
+	
+}
+
+#correspondence {
+	serviceToPetriNet :ServiceToPetriNet {
+		#src->service
+		#trg->petriNet
+	}
+	
+	vnfToGroup:SourceToGroup {
+		#src->source
+		#trg->group
+	}
+	
+	++OutPortToSubSubGroup :OutPortToSubSubGroup {
+		#src->outPortFWD
+		#trg->outPortFWDGroup
+	}
+	
+}
+
+#attributeConditions {
+	eq_string(placeFWD.queue,"FIFO")
+	eq_string(outPortFWD.name,outPortFWDGroup.name)
+	
+}
+
+
+#rule BWDOutPortToSubSubGroupSource #with Transform_VNF_QPN
+
+#source { 
+	
+	service:Service {
+		-sources->source
+	}
+	
+	source:Source {
+		++-outport->outPortBWD
+	}
+	
+	++ outPortBWD : OutPortBWD {
+		
+	}
+}
+
+#target {
+	
+	petriNet : PetriNet {
+		-groups->group
+		//++-arcs->arcBWD
+	}
+	
+	
+	group: Group {
+		-backward->subGroupBWD
+		
+	}
+	
+	subGroupBWD :SubGroup {
+		-function-> functionBWD
+		++-out->outPortBWDGroup
+	}
+	
+	
+	
+	functionBWD : SubSubGroup {
+		-transitions->transitionBWD
+	}
+	transitionBWD :TimedTransition {
+		
+	}
+	
+	++outPortBWDGroup : SubSubGroup {
+		++-places->placeBWD
+		++-arcs->arcBWD}
+		
+	++placeBWD :Place {
+		
+	} 
+	
+	++arcBWD : Arc {
+		++-from->transitionBWD
+		++-to->placeBWD
+	}
+	
+}
+
+#correspondence {
+	
+	serviceToPetriNet :ServiceToPetriNet {
+		#src->service
+		#trg->petriNet
+	}
+	
+	vnfToGroup:SourceToGroup {
+		#src->source
+		#trg->group
+	}
+	
+	++OutPortToSubSubGroup :OutPortToSubSubGroup {
+		#src->outPortBWD
+		#trg->outPortBWDGroup
+	}
+	
+}
+
+#attributeConditions {
+	eq_string(placeBWD.queue,"FIFO")
+	eq_string(outPortBWD.name,outPortBWDGroup.name)
+}

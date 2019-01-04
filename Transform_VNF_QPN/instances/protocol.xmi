@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:Transform_VNF_QPN="platform:/resource/Transform_VNF_QPN/model/Transform_VNF_QPN.ecore">
+  <Transform_VNF_QPN:ServiceToPetriNet__Marker final="true">
+    <CREATE__SRC__service href="src.xmi#/0"/>
+    <CREATE__TRG__petriNet href="trg.xmi#/"/>
+    <CREATE__CORR__serviceToPetriNet href="corr.xmi#/0"/>
+  </Transform_VNF_QPN:ServiceToPetriNet__Marker>
+  <Transform_VNF_QPN:SourceToGroup__Marker final="true">
+    <CONTEXT__SRC__service href="src.xmi#/0"/>
+    <CREATE__SRC__source href="src.xmi#/0/@sources.0"/>
+    <CREATE__TRG__functionBWD href="trg.xmi#//@groups.0/@backward/@function.0"/>
+    <CREATE__TRG__functionFWD href="trg.xmi#//@groups.0/@forward/@function.0"/>
+    <CREATE__TRG__group href="trg.xmi#//@groups.0"/>
+    <CONTEXT__TRG__petriNet href="trg.xmi#/"/>
+    <CREATE__TRG__placeBWD href="trg.xmi#//@groups.0/@backward/@function.0/@places.0"/>
+    <CREATE__TRG__subGroupBWD href="trg.xmi#//@groups.0/@backward"/>
+    <CREATE__TRG__subGroupFWD href="trg.xmi#//@groups.0/@forward"/>
+    <CREATE__TRG__transitionFWD href="trg.xmi#//@groups.0/@forward/@function.0/@transitions.0"/>
+    <CONTEXT__CORR__serviceToPetriNet href="corr.xmi#/0"/>
+    <CREATE__CORR__sourceToGroup href="corr.xmi#/1"/>
+  </Transform_VNF_QPN:SourceToGroup__Marker>
+  <Transform_VNF_QPN:VNFToGroup__Marker final="true">
+    <CONTEXT__SRC__service href="src.xmi#/0"/>
+    <CREATE__SRC__vnf href="src.xmi#/0/@components.1"/>
+    <CREATE__TRG__arcBWD href="trg.xmi#//@arcs.0"/>
+    <CREATE__TRG__arcFWD href="trg.xmi#//@arcs.1"/>
+    <CREATE__TRG__functionBWD href="trg.xmi#//@groups.1/@backward/@function.0"/>
+    <CREATE__TRG__functionFWD href="trg.xmi#//@groups.1/@forward/@function.0"/>
+    <CREATE__TRG__group href="trg.xmi#//@groups.1"/>
+    <CONTEXT__TRG__petriNet href="trg.xmi#/"/>
+    <CREATE__TRG__placeBWD href="trg.xmi#//@groups.1/@backward/@function.0/@places.0"/>
+    <CREATE__TRG__placeFWD href="trg.xmi#//@groups.1/@forward/@function.0/@places.0"/>
+    <CREATE__TRG__subGroupBWD href="trg.xmi#//@groups.1/@backward"/>
+    <CREATE__TRG__subGroupFWD href="trg.xmi#//@groups.1/@forward"/>
+    <CREATE__TRG__transitionBWD href="trg.xmi#//@groups.1/@backward/@function.0/@transitions.0"/>
+    <CREATE__TRG__transitionFWD href="trg.xmi#//@groups.1/@forward/@function.0/@transitions.0"/>
+    <CONTEXT__CORR__serviceToPetriNet href="corr.xmi#/0"/>
+    <CREATE__CORR__vnfToGroup href="corr.xmi#/2"/>
+  </Transform_VNF_QPN:VNFToGroup__Marker>
+  <Transform_VNF_QPN:FWDOutPortToSubSubGroup__Marker final="true">
+    <CREATE__SRC__outPortFWD href="src.xmi#/3"/>
+    <CONTEXT__SRC__service href="src.xmi#/0"/>
+    <CONTEXT__SRC__vnf href="src.xmi#/0/@components.1"/>
+    <CREATE__TRG__arcFWD href="trg.xmi#//@groups.1/@forward/@out.0/@arcs.0"/>
+    <CONTEXT__TRG__functionFWD href="trg.xmi#//@groups.1/@forward/@function.0"/>
+    <CONTEXT__TRG__group href="trg.xmi#//@groups.1"/>
+    <CREATE__TRG__outPortFWDGroup href="trg.xmi#//@groups.1/@forward/@out.0"/>
+    <CONTEXT__TRG__petriNet href="trg.xmi#/"/>
+    <CREATE__TRG__placeFWD href="trg.xmi#//@groups.1/@forward/@out.0/@places.0"/>
+    <CONTEXT__TRG__subGroupFWD href="trg.xmi#//@groups.1/@forward"/>
+    <CONTEXT__TRG__transitionFWD href="trg.xmi#//@groups.1/@forward/@function.0/@transitions.0"/>
+    <CREATE__CORR__OutPortToSubSubGroup href="corr.xmi#/3"/>
+    <CONTEXT__CORR__serviceToPetriNet href="corr.xmi#/0"/>
+    <CONTEXT__CORR__vnfToGroup href="corr.xmi#/2"/>
+  </Transform_VNF_QPN:FWDOutPortToSubSubGroup__Marker>
+  <Transform_VNF_QPN:BWDInPortToSubSubGroupSource__Marker final="true">
+    <CREATE__SRC__inPortBWD href="src.xmi#/2"/>
+    <CONTEXT__SRC__service href="src.xmi#/0"/>
+    <CONTEXT__SRC__source href="src.xmi#/0/@sources.0"/>
+    <CREATE__TRG__InPortBWDGroup href="trg.xmi#//@groups.0/@backward/@in.0"/>
+    <CREATE__TRG__arcBWD href="trg.xmi#//@groups.0/@backward/@in.0/@arcs.0"/>
+    <CONTEXT__TRG__functionBWD href="trg.xmi#//@groups.0/@backward/@function.0"/>
+    <CONTEXT__TRG__group href="trg.xmi#//@groups.0"/>
+    <CONTEXT__TRG__petriNet href="trg.xmi#/"/>
+    <CONTEXT__TRG__placeBWD href="trg.xmi#//@groups.0/@backward/@function.0/@places.0"/>
+    <CONTEXT__TRG__subGroupBWD href="trg.xmi#//@groups.0/@backward"/>
+    <CREATE__TRG__transitionBWD href="trg.xmi#//@groups.0/@backward/@in.0/@transitions.0"/>
+    <CREATE__CORR__inPortToSubSubGroup href="corr.xmi#/4"/>
+    <CONTEXT__CORR__serviceToPetriNet href="corr.xmi#/0"/>
+    <CONTEXT__CORR__vnfToGroup href="corr.xmi#/1"/>
+  </Transform_VNF_QPN:BWDInPortToSubSubGroupSource__Marker>
+  <Transform_VNF_QPN:VNFToGroup__Marker final="true">
+    <CONTEXT__SRC__service href="src.xmi#/0"/>
+    <CREATE__SRC__vnf href="src.xmi#/0/@components.0"/>
+    <CREATE__TRG__arcBWD href="trg.xmi#//@arcs.2"/>
+    <CREATE__TRG__arcFWD href="trg.xmi#//@arcs.3"/>
+    <CREATE__TRG__functionBWD href="trg.xmi#//@groups.2/@backward/@function.0"/>
+    <CREATE__TRG__functionFWD href="trg.xmi#//@groups.2/@forward/@function.0"/>
+    <CREATE__TRG__group href="trg.xmi#//@groups.2"/>
+    <CONTEXT__TRG__petriNet href="trg.xmi#/"/>
+    <CREATE__TRG__placeBWD href="trg.xmi#//@groups.2/@backward/@function.0/@places.0"/>
+    <CREATE__TRG__placeFWD href="trg.xmi#//@groups.2/@forward/@function.0/@places.0"/>
+    <CREATE__TRG__subGroupBWD href="trg.xmi#//@groups.2/@backward"/>
+    <CREATE__TRG__subGroupFWD href="trg.xmi#//@groups.2/@forward"/>
+    <CREATE__TRG__transitionBWD href="trg.xmi#//@groups.2/@backward/@function.0/@transitions.0"/>
+    <CREATE__TRG__transitionFWD href="trg.xmi#//@groups.2/@forward/@function.0/@transitions.0"/>
+    <CONTEXT__CORR__serviceToPetriNet href="corr.xmi#/0"/>
+    <CREATE__CORR__vnfToGroup href="corr.xmi#/5"/>
+  </Transform_VNF_QPN:VNFToGroup__Marker>
+  <Transform_VNF_QPN:FWDOutPortToSubSubGroup__Marker final="true">
+    <CREATE__SRC__outPortFWD href="src.xmi#/1"/>
+    <CONTEXT__SRC__service href="src.xmi#/0"/>
+    <CONTEXT__SRC__vnf href="src.xmi#/0/@components.0"/>
+    <CREATE__TRG__arcFWD href="trg.xmi#//@groups.2/@forward/@out.0/@arcs.0"/>
+    <CONTEXT__TRG__functionFWD href="trg.xmi#//@groups.2/@forward/@function.0"/>
+    <CONTEXT__TRG__group href="trg.xmi#//@groups.2"/>
+    <CREATE__TRG__outPortFWDGroup href="trg.xmi#//@groups.2/@forward/@out.0"/>
+    <CONTEXT__TRG__petriNet href="trg.xmi#/"/>
+    <CREATE__TRG__placeFWD href="trg.xmi#//@groups.2/@forward/@out.0/@places.0"/>
+    <CONTEXT__TRG__subGroupFWD href="trg.xmi#//@groups.2/@forward"/>
+    <CONTEXT__TRG__transitionFWD href="trg.xmi#//@groups.2/@forward/@function.0/@transitions.0"/>
+    <CREATE__CORR__OutPortToSubSubGroup href="corr.xmi#/6"/>
+    <CONTEXT__CORR__serviceToPetriNet href="corr.xmi#/0"/>
+    <CONTEXT__CORR__vnfToGroup href="corr.xmi#/5"/>
+  </Transform_VNF_QPN:FWDOutPortToSubSubGroup__Marker>
+</xmi:XMI>

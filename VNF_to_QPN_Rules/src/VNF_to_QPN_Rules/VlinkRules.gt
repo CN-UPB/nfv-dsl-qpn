@@ -1,0 +1,58 @@
+import "platform:/resource/VNF/model/VNF.ecore"
+
+pattern selfLinkPattern {
+	vnf: VNF_component {
+		-inport->inport
+		-outport->outport
+	}
+	inport: InPort
+	outport: OutPort
+	vlink: Vlink {
+		-target -> inport
+		-source -> outport
+	}
+	
+}
+condition selfLink = forbid selfLinkPattern
+
+pattern outPortToInPortRestriction {
+	in: InPort	
+	out: OutPort
+	vlink:Vlink {
+		-target->in
+		-source->out
+	}
+}
+
+// Vlink from OutPort to OutPort is not allowed
+pattern outToOutPattern {
+	out1: OutPort
+	out2: OutPort
+}
+condition outToOut = forbid outToOutPattern
+
+// Vlink from OutPortFWD to OutPortBWD and OutPortBWD to OutPortFWD is not allowed
+pattern outFWDOutBWDPattern refines outToOutPattern{
+	outFWD: OutPortFWD
+	outBWD: OutPortBWD
+}
+condition outFWDToOutBWD = forbid outFWDOutBWDPattern
+
+// Vlink from InPort to InPort is not allowed
+pattern inToInPattern {
+	in1: InPort
+	in2: InPort
+}
+condition inToIn = forbid inToInPattern
+
+// Vlink from InPortFWD to InPortBWD and InPortBWD to InPortFWD is not allowed
+pattern inFWDInBWDPattern refines inToInPattern{
+	inFWD: InPortFWD
+	inBWD: InPortBWD
+}
+condition inFWDToInBWD = forbid inFWDInBWDPattern
+
+
+
+
+

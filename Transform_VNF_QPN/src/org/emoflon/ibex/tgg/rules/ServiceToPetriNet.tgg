@@ -1,0 +1,29 @@
+#using Transform_VNF_QPN.*
+#using AttrCondDefLibrary.*
+
+#rule ServiceToPetriNet #with Transform_VNF_QPN
+
+#source { 
+	++ service: Service {
+		
+	}
+	
+	
+}
+
+#target {
+	++ petriNet : PetriNet {
+		
+	}
+}
+
+#correspondence {
+	++ serviceToPetriNet:ServiceToPetriNet {
+		#src-> service
+		#trg-> petriNet
+	}
+}
+
+#attributeConditions {
+	eq_string (service.name, petriNet.name)
+}

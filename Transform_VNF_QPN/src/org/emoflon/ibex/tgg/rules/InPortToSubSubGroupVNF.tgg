@@ -1,0 +1,183 @@
+#using Transform_VNF_QPN.*
+#using AttrCondDefLibrary.*
+
+#rule FWDInPortToSubSubGroupVNF #with Transform_VNF_QPN
+
+#source { 
+	service : Service {
+		-components->vnf
+		
+	}
+	vnf:VNF_component{
+		++-inport->inPortFWD
+	}
+	
+	++inPortFWD :InPortFWD{
+		
+	}
+	
+		}
+
+
+#target {
+	
+	petriNet: PetriNet {
+		-groups-> group
+	}
+	
+	group: Group {
+		-forward->subGroupFWD
+		
+	}
+	
+	subGroupFWD :SubGroup {
+		-function-> functionFWD
+		++-in->InPortFWDGroup
+	}
+	
+	
+	
+	functionFWD : SubSubGroup {
+		-places->placeFWD
+	}
+	placeFWD :Place {
+		
+	}
+		
+	
+	
+	++ InPortFWDGroup :SubSubGroup {
+		++-arcs->arcFWD
+		++-transitions->transitionFWD
+	}
+	
+	++ transitionFWD:ImmediateTransition {
+		
+	}
+	
+	++arcFWD:Arc {
+		++-from->transitionFWD
+		++-to->placeFWD
+	}
+	
+	
+	
+	
+	
+
+	
+	
+}
+
+#correspondence {
+	serviceToPetriNet :ServiceToPetriNet {
+		#src->service
+		#trg->petriNet
+	}
+	
+	vnfToGroup:VNFToGroup {
+		#src->vnf
+		#trg->group
+	}
+	
+	++inPortToSubSubGroup :InPortToSubSubGroup {
+		#src->inPortFWD
+		#trg->InPortFWDGroup
+	}
+	
+	
+}
+
+#attributeConditions {
+	eq_string(inPortFWD.name,InPortFWDGroup.name)
+}
+
+
+#rule BWDInPortToSubSubGroupVNF #with Transform_VNF_QPN
+
+#source { 
+	service : Service {
+		-components->vnf
+		
+	}
+	vnf:VNF_component{
+		++-inport->inPortBWD
+	}
+	
+	++inPortBWD :InPortBWD{
+		
+	}
+	
+		}
+
+
+#target {
+	
+	petriNet: PetriNet {
+		-groups-> group
+	}
+	
+	group: Group {
+		-backward->subGroupBWD
+		
+	}
+	
+	subGroupBWD :SubGroup {
+		-function-> functionBWD
+		++-in->InPortBWDGroup
+	}
+	
+	
+	
+	functionBWD : SubSubGroup {
+		-places->placeBWD
+	}
+	placeBWD :Place {
+		
+	}
+		
+	
+	++ InPortBWDGroup :SubSubGroup {
+		++-arcs->arcBWD		
+		++-transitions->transitionBWD
+	}
+	
+	++ transitionBWD:ImmediateTransition {
+		
+	}
+	
+	++arcBWD:Arc {
+		++-from->transitionBWD
+		++-to->placeBWD
+	}
+	
+	
+	
+	
+}
+
+#correspondence {
+	serviceToPetriNet :ServiceToPetriNet {
+		#src->service
+		#trg->petriNet
+	}
+	
+	vnfToGroup:VNFToGroup {
+		#src->vnf
+		#trg->group
+	}
+	
+	++inPortToSubSubGroup :InPortToSubSubGroup {
+		#src->inPortBWD
+		#trg->InPortBWDGroup
+	}
+	
+	
+}
+
+#attributeConditions {
+	
+	eq_string(inPortBWD.name,InPortBWDGroup.name)
+	
+}
+

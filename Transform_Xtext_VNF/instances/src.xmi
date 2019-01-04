@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vnf:Service xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:vnf="http://www.Vnf.vnf_to_qpn" serviceNname="s1">
+  <components vnfName="vnf1" resources="hallo" processingTime="">
+    <ports>
+      <inPort name="v1i1" isSync="true"/>
+      <outPort name="v1o1"/>
+    </ports>
+  </components>
+  <components vnfName="vnf2" resources="" processingTime="">
+    <ports>
+      <inPort name="v2i1"/>
+      <outPort name="v2o1"/>
+    </ports>
+  </components>
+  <connectors vLinkName="vl1" source="//@components.0/@ports/@outPort.0" target="//@components.1/@ports/@inPort.0" probability=""/>
+  <connectors vLinkName="vl2" source="//@components.1/@ports/@outPort.0" target="//@components.0/@ports/@inPort.0" probability=""/>
+</vnf:Service>

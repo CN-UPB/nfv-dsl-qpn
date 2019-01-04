@@ -1,0 +1,60 @@
+@GenModel(documentation="TODO: Add documentation for Blup")
+@namespace(uri="platform:/resource/QPN/model/QPN.ecore", prefix="QPN")
+package QPN;
+
+class PetriNet {
+	val Group [*] groups;
+	val Arc [*] arcs;
+	attr EString name;
+	val Place [*] flyingPlaces;
+}
+
+abstract class Element {
+	attr EString location;
+	attr EString name;
+	attr EString ID;
+
+}
+
+class Arc extends Element {
+	attr EString text;				// data manipulation
+	ref Element [1] to;
+	ref Element [1] from;
+}
+
+class Place extends Element {
+	attr EString queue;
+}
+
+abstract class Transition extends Element {
+	
+}
+
+class TimedTransition extends Transition {
+	attr EString timeFunction;
+}
+
+class ImmediateTransition extends Transition {
+	attr EString weight;
+}
+
+class SubSubGroup { // Ports
+	attr EString name;
+	val Arc [*] arcs;
+	val Place [*] places;
+	val Transition [*] transitions;
+}
+
+class SubGroup { // vnfs
+	val SubSubGroup [*] in;
+	val SubSubGroup [*] out;
+	val SubSubGroup [*] function; 
+}
+
+class Group { //Vnf containing Forward and Backward functions(vnf)
+	attr EString name;
+	val SubGroup forward;
+	val SubGroup backward;
+}
+
+

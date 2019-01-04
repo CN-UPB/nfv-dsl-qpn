@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated VNF_to_QPN -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="VNF_to_QPN.presentation.VNF_to_QPNModelWizardID"
+            name="%_UI_VNF_to_QPNModelWizard_label"
+            class="VNF_to_QPN.presentation.VNF_to_QPNModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/VNF_to_QPNModelFile.gif">
+         <description>%_UI_VNF_to_QPNModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated VNF_to_QPN -->
+      <editor
+            id="VNF_to_QPN.presentation.VNF_to_QPNEditorID"
+            name="%_UI_VNF_to_QPNEditor_label"
+            icon="icons/full/obj16/VNF_to_QPNModelFile.gif"
+            extensions="vnf_to_qpn"
+            class="VNF_to_QPN.presentation.VNF_to_QPNEditor"
+            contributorClass="VNF_to_QPN.presentation.VNF_to_QPNActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>

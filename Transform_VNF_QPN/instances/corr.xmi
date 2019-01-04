@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ASCII"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Transform_VNF_QPN="platform:/resource/Transform_VNF_QPN/model/Transform_VNF_QPN.ecore" xmlns:VNF_to_QPN="platform:/resource/VNF_to_QPN/model/VNF_to_QPN.ecore">
+  <Transform_VNF_QPN:ServiceToPetriNet>
+    <source href="src.xmi#/0"/>
+    <target href="trg.xmi#/"/>
+  </Transform_VNF_QPN:ServiceToPetriNet>
+  <Transform_VNF_QPN:SourceToGroup>
+    <source href="src.xmi#/0/@sources.0"/>
+    <target href="trg.xmi#//@groups.0"/>
+  </Transform_VNF_QPN:SourceToGroup>
+  <Transform_VNF_QPN:VNFToGroup>
+    <source href="src.xmi#/0/@components.1"/>
+    <target href="trg.xmi#//@groups.1"/>
+  </Transform_VNF_QPN:VNFToGroup>
+  <Transform_VNF_QPN:OutPortToSubSubGroup>
+    <source xsi:type="VNF_to_QPN:OutPortFWD" href="src.xmi#/3"/>
+    <target href="trg.xmi#//@groups.1/@forward/@out.0"/>
+  </Transform_VNF_QPN:OutPortToSubSubGroup>
+  <Transform_VNF_QPN:InPortToSubSubGroup>
+    <source xsi:type="VNF_to_QPN:InPortBWD" href="src.xmi#/2"/>
+    <target href="trg.xmi#//@groups.0/@backward/@in.0"/>
+  </Transform_VNF_QPN:InPortToSubSubGroup>
+  <Transform_VNF_QPN:VNFToGroup>
+    <source href="src.xmi#/0/@components.0"/>
+    <target href="trg.xmi#//@groups.2"/>
+  </Transform_VNF_QPN:VNFToGroup>
+  <Transform_VNF_QPN:OutPortToSubSubGroup>
+    <source xsi:type="VNF_to_QPN:OutPortFWD" href="src.xmi#/1"/>
+    <target href="trg.xmi#//@groups.2/@forward/@out.0"/>
+  </Transform_VNF_QPN:OutPortToSubSubGroup>
+</xmi:XMI>

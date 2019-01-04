@@ -1,0 +1,82 @@
+#using Transform_Xtext_VNF.*
+#using AttrCondDefLibrary.*
+
+#rule InP2InPFWD #with Transform_Xtext_VNF
+
+#source { 
+	vnf: vnf.VNF {
+		-fwdPorts->fwdPorts
+	}
+	fwdPorts: FWDPort {
+		++ -inPort->inPort
+	}
+	++ inPort: InPort {
+		
+	}
+}
+
+#target {
+	trgVnf: VNF.VNF_component {
+		++ -inport->trgInPortFWD
+	}
+	++ trgInPortFWD: VNF.InPortFWD {
+		
+	}
+}
+
+#correspondence {
+	vnf2vnf: VnfToVnf {
+		#src->vnf
+		#trg->trgVnf
+	}
+	++ inport2inport: InPortToInPort {
+		#src->inPort
+		#trg->trgInPortFWD
+	}
+}
+
+#attributeConditions {
+	eq_string(inPort.name,trgInPortFWD.name)
+	eq_boolean(inPort.isSync, trgInPortFWD.isSynchronized)
+	
+}
+
+#rule InP2InPBWD #with Transform_Xtext_VNF
+
+#source { 
+	vnf: vnf.VNF {
+		-bwdPorts->bwdPorts
+	}
+	bwdPorts: BWDPort {
+		++ -inPort->inPort
+	}
+	++ inPort: InPort {
+		
+	}
+}
+
+#target {
+	trgVnf: VNF.VNF_component {
+		++ -inport->trgInPortBWD
+	}
+	++ trgInPortBWD: VNF.InPortBWD {
+		
+	}
+}
+
+#correspondence {
+	vnf2vnf: VnfToVnf {
+		#src->vnf
+		#trg->trgVnf
+	}
+	++ inport2inport: InPortToInPort {
+		#src->inPort
+		#trg->trgInPortBWD
+	}
+}
+
+#attributeConditions {
+	eq_string(inPort.name,trgInPortBWD.name)
+	eq_boolean(inPort.isSync, trgInPortBWD.isSynchronized)
+	
+}
