@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <psf version="2.0">
 <provider id="org.eclipse.egit.core.GitProvider">
-<project reference="1.0,https://git.cs.upb.de/martenls/mbse-qpns.git,master,QPN"/>
-<project reference="1.0,https://git.cs.upb.de/martenls/mbse-qpns.git,master,Testsuite_VNF_to_QPN"/>
-<project reference="1.0,https://git.cs.upb.de/martenls/mbse-qpns.git,master,Transform_VNF_QPN"/>
-<project reference="1.0,https://git.cs.upb.de/martenls/mbse-qpns.git,master,Transform_Xtext_VNF"/>
-<project reference="1.0,https://git.cs.upb.de/martenls/mbse-qpns.git,master,VNF"/>
-<project reference="1.0,https://git.cs.upb.de/martenls/mbse-qpns.git,master,VNF_to_QPN_Rules"/>
-<project reference="1.0,https://git.cs.upb.de/martenls/mbse-qpns.git,master,vnf_to_qpn_xtext"/>
-<project reference="1.0,https://git.cs.upb.de/martenls/mbse-qpns.git,master,vnf_to_qpn_xtext.ide"/>
-<project reference="1.0,https://git.cs.upb.de/martenls/mbse-qpns.git,master,vnf_to_qpn_xtext.tests"/>
-<project reference="1.0,https://git.cs.upb.de/martenls/mbse-qpns.git,master,vnf_to_qpn_xtext.ui"/>
-<project reference="1.0,https://git.cs.upb.de/martenls/mbse-qpns.git,master,vnf_to_qpn_xtext.ui.tests"/>
+<project reference="1.0,https://github.com/CN-UPB/nfv-dsl-qpn.git,master,QPN"/>
+<project reference="1.0,https://github.com/CN-UPB/nfv-dsl-qpn.git,master,Testsuite_VNF_to_QPN"/>
+<project reference="1.0,https://github.com/CN-UPB/nfv-dsl-qpn.git,master,Transform_VNF_QPN"/>
+<project reference="1.0,https://github.com/CN-UPB/nfv-dsl-qpn.git,master,Transform_Xtext_VNF"/>
+<project reference="1.0,https://github.com/CN-UPB/nfv-dsl-qpn.git,master,VNF"/>
+<project reference="1.0,https://github.com/CN-UPB/nfv-dsl-qpn.git,master,VNF_to_QPN_Rules"/>
+<project reference="1.0,https://github.com/CN-UPB/nfv-dsl-qpn.git,master,vnf_to_qpn_xtext"/>
+<project reference="1.0,https://github.com/CN-UPB/nfv-dsl-qpn.git,master,vnf_to_qpn_xtext.ide"/>
+<project reference="1.0,https://github.com/CN-UPB/nfv-dsl-qpn.git,master,vnf_to_qpn_xtext.tests"/>
+<project reference="1.0,https://github.com/CN-UPB/nfv-dsl-qpn.git,master,vnf_to_qpn_xtext.ui"/>
+<project reference="1.0,https://github.com/CN-UPB/nfv-dsl-qpn.git,master,vnf_to_qpn_xtext.ui.tests"/>
 </provider>
 </psf>
