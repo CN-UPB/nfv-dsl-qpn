@@ -3,7 +3,7 @@
 ## Installation
 ### To get eclipse running:
 1. Install eMoflon IBeX: https://github.com/eMoflon/emoflon-ibex-democles and everything you need for the third IBeX handbook (Xtext, Xtend, ...)
-2. Import this PSF file into your workspace:  ** to be added **
+2. Import this PSF file into your workspace:  https://github.com/CN-UPB/nfv-dsl-qpn/blob/master/full.psf
 3. Alternatively, clone the repository and import the full.psf file into your workspace
 4. Go into Window -> Preferences -> Emfatic and activate "Automatically greate Ecore (\*.ecore) file when saving emfatic (\*.emf) file."
 5. Locate the VNF.emf file in the project VNF -> model -> VNF.emf make an arbitrary change like adding a whitespace and save the file.
