@@ -25,6 +25,7 @@
 ### Troubleshooting
 
 - If an error occurrs in the vnf\_to\_qpn\_xtext.ui.tests project while cleaning, building and generating the workflow, this can be ignored as the editor should not be affected.
+- If the MWE workflow can not be found as run configuration, it might help to reinstall the Xtext plugin or download the eclipse package linked in the first handbook again.
 
 ## For developers
 The project consists of three different parts:
