@@ -5,8 +5,11 @@
 1. Install eMoflon IBeX: https://github.com/eMoflon/emoflon-ibex-democles and everything you need for the third IBeX handbook (Xtext, Xtend, ...)
 2. Import this PSF file into your workspace:  ** to be added **
 3. Alternatively, clone the repository and import the full.psf file into your workspace
-3. Run GenerateVnf.mwe2 as an MWE workflow (see third handbook)
-4. Choose all projects and hit the black IBeX build hammer in the toolbar
+4. Go into Window -> Preferences -> Emfatic and activate "Automatically greate Ecore (\*.ecore) file when saving emfatic (\*.emf) file."
+5. Locate the VNF.emf file in the project VNF -> model -> VNF.emf make an arbitrary change like adding a whitespace and save the file.
+6. Locate the QPN.emf file in the project QPN -> model -> QPN.emf make an arbitrary change like adding a whitespace and save the file.
+7. Run GenerateVnf.mwe2 as an MWE workflow (see third handbook)
+8. Choose all projects and hit the black IBeX build hammer in the toolbar
 
 ### To run the editor and create a petri net:
 1. Select the vnf\_to\_qpn\_xtext project in the Package Explorer and choose "Run As: Eclipse Application"
@@ -18,6 +21,10 @@
 ### To view the petri net:
 1. Download and install the Petri Net modeling tool [TimeNET](https://timenet.tu-ilmenau.de/#/)
 2. Open the qpn.xml file from the runtime workspace the new eclipse instance created automatically (probably called "runtime-EclipseApplication" or something similar)
+
+### Troubleshooting
+
+- If an error occurrs in the vnf\_to\_qpn\_xtext.ui.tests project while cleaning, building and generating the workflow, this can be ignored as the editor should not be affected.
 
 ## For developers
 The project consists of three different parts:
