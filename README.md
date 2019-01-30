@@ -1,5 +1,9 @@
 # Domain Specific Language for specifying Queueing Petri Nets
 
+Watch the video tutorial on YouTube:
+
+[![Video Tutorial](https://img.youtube.com/vi/m8IebgQ_B1A/0.jpg)](https://www.youtube.com/watch?v=m8IebgQ_B1A)
+
 ## Installation
 ### To get eclipse running:
 1. Install eMoflon IBeX: https://github.com/eMoflon/emoflon-ibex-democles and everything you need for the third IBeX handbook (Xtext, Xtend, ...)
